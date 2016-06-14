@@ -185,7 +185,9 @@ $(function () {
   $( ".js-datepicker " ).datepicker({
     dateFormat: "d MM yy",
     changeMonth: true,
-    changeYear: true
+    changeYear: true,
+    altField: "#birthdate",
+    altFormat: "yy-mm-dd"
   });
   
   $.datepicker.regional['ru'] = { 
@@ -222,11 +224,12 @@ $(function () {
         $('input, select').trigger('refresh');
       }, 1)
     },
-    submitHandler: function() {
-      $('.js-popup-wrap, .js-popup-register').fadeIn();
-      setTimeout(function(){
-        $('.js-popup-wrap, .js-popup-register').fadeOut();
-      }, 3000)
+    submitHandler: function(form) {
+      //$('.js-popup-wrap, .js-popup-register').fadeIn();
+      //setTimeout(function(){
+      //  $('.js-popup-wrap, .js-popup-register').fadeOut();
+      //}, 3000);
+      form.submit();
     }
   });
   
