@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//http://fimbo/register/verify/pIQjLoGe86JRp5nBgRNEiQMVhnLwJCaeH2Pe9Uq4FBGr4IqVHEnAMuYRcziW
+Route::get('register/verify/{confirmation_code}', [
+    'uses' => 'Auth\RegistrationController@confirm'
+]);
+
+Route::get('/register/success', function () {
+    return view('auth.register-success');
+});
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
