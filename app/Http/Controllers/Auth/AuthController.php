@@ -95,7 +95,7 @@ class AuthController extends Controller
 
         Mail::send('auth.emails.verify', ['confirmation_code' => $user->confirmation_code], function($message) use ($user) {
             $message->to($user->email, $user->username)
-                ->subject('Verify your email address');
+                ->subject('Подтверждение адреса электронной почты');
         });
 
         return redirect('/register/success');

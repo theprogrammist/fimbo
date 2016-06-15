@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'fimbo@leandev.ru', 'name' => 'fimbo test'],
+    'from' => ['address' => 'fimbo@leandev.ru', 'name' => 'Проект Fimbo.ru'],
 
     /*
     |--------------------------------------------------------------------------

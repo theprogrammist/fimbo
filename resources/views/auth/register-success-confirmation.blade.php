@@ -18,4 +18,9 @@
 <div class="content-info">
     <div class="content-info__text"><?=$resultMessage?></div>
 </div>
+    @if(isset($resultRedirect))
+        <script language="JavaScript">
+            setTimeout(function(){window.location.href = "{{$resultRedirect}}"; }, 5000);
+        </script>
+    @endif
 @endsection

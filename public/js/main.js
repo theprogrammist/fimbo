@@ -187,7 +187,8 @@ $(function () {
     changeMonth: true,
     changeYear: true,
     altField: "#birthdate",
-    altFormat: "yy-mm-dd"
+    altFormat: "yy-mm-dd",
+    yearRange: '1950:'
   });
   
   $.datepicker.regional['ru'] = { 
@@ -204,7 +205,7 @@ $(function () {
     dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], 
     dateFormat: 'dd.mm.yy', 
     firstDay: 1, 
-    isRTL: false 
+    isRTL: false
     }; 
     $.datepicker.setDefaults($.datepicker.regional['ru']); 
   $('.datepicker').click(function(){
