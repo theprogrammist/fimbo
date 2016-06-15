@@ -24,30 +24,29 @@ class RegistrationController extends Controller
      * @return \Illuminate\Http\Response
      * @throws InvalidConfirmationCodeException
      */
-    public function confirm($confirmationCode)
+    public function confirm($confirmationCode = false)
     {
         if (!$confirmationCode) {
-            return view('auth.confirmation-code')
-                ->with('resultClass', 'result-class-error')
-                ->with('response', 'Не указан код подтверждения');
+            return view('auth.register-success-confirmation')
+                ->with('resultClass', 'active')
+                ->with('resultMessage', 'Не указан код подтверждения');
         }
 
         $user = User::whereConfirmationCode($confirmationCode)->first();
 
         if (!$user) {
-            return view('auth.confirmation-code')
-                ->with('resultClass', 'result-class-error')
-                ->with('response', 'Неправильный код подтверждения');
+            return view('auth.register-success-confirmation')
+                ->with('resultClass', 'active')
+                ->with('resultMessage', 'Неправильный код подтверждения');
         }
 
         $user->confirmed = 1;
         //$user->confirmation_code = null;
         $user->save();
 
-        //Flash::message('You have successfully verified your account.');
-        return view('auth.confirmation-code')
-            ->with('resultClass', 'result-class-success')
-            ->with('response', 'Ваша электронная почта успешно подтверждена');
+        return view('auth.register-success-confirmation')
+            ->with('resultClass', 'active-done')
+            ->with('resultMessage', 'Ваша электронная почта успешно подтверждена.');
 
         //return Redirect::route('login_path');
     }

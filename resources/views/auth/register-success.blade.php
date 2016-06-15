@@ -1,1 +1,0 @@
-SUCCESS!!!resources/views/auth/register-success.blade.php:1

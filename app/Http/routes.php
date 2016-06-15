@@ -15,12 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 //http://fimbo/register/verify/pIQjLoGe86JRp5nBgRNEiQMVhnLwJCaeH2Pe9Uq4FBGr4IqVHEnAMuYRcziW
-Route::get('register/verify/{confirmation_code}', [
+Route::get('register/verify/{confirmation_code?}', [
     'uses' => 'Auth\RegistrationController@confirm'
 ]);
 
 Route::get('/register/success', function () {
-    return view('auth.register-success');
+    return view('auth.register-success-confirmation')
+        ->with('resultClass', 'active')
+        ->with('resultMessage', 'Для подтверждения электронной почты откройте письмо<br>от нашего сервиса и перейдите по ссылке в теле письма.');
 });
 
 Route::auth();
