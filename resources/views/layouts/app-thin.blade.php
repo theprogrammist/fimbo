@@ -27,7 +27,7 @@
 
 <footer>
     <div class="container">
-        <div class="copir">© 2016 юный предприниматель</div>
+        <div class="copir">© 2016 FIMBO.RU</div>
         <ul class="footer-menu">
             <li class="footer-menu__li"><a href="javascript:void(0);" class="footer-menu__link">о нас         </a>
             </li>
