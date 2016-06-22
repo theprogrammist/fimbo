@@ -6,3 +6,39 @@ div.has-error {
     background-color: rgba(255, 0, 0, 0.3);
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+}
+.alert .close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+.alert h4 {
+    margin-top: 0;
+    color: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}

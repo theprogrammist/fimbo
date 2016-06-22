@@ -152,8 +152,8 @@ class AuthController extends Controller
     {
         return redirect()->back()
             //->withInput($request->only($this->loginUsername(), 'remember'))
-            ->withErrors([
-                $this->loginUsername() => 'Требуется подтверждение почтового ящика!',
+            ->with([
+                'error' => 'Требуется подтверждение почтового ящика!',
             ]);
     }
 }

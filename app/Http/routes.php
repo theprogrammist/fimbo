@@ -14,6 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::group(['prefix' => 'admin'], function($router)
+{
+    Route::get('/', 'AdminController@dashboard');
+    Route::get('/static-content', ['as' => 'staticContent', 'uses' => 'AdminController@staticContent']);
+});
+
 //http://fimbo/register/verify/pIQjLoGe86JRp5nBgRNEiQMVhnLwJCaeH2Pe9Uq4FBGr4IqVHEnAMuYRcziW
 Route::get('register/verify/{confirmation_code?}', [
     'uses' => 'Auth\RegistrationController@confirm'

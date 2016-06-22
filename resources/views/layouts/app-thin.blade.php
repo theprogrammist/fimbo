@@ -20,6 +20,8 @@
     <script src="<?=asset('js/libs/jquery.animateNumber.min.js')?>"></script>
     <script src="<?=asset('js/libs/jquery.circliful.min.js')?>"></script>
     <script src="<?=asset('js/main.js')?>"></script>
+
+    <script src="<?=asset('bootstrap/js/bootstrap.min.js')?>"></script>
 </head>
 <body>
 
@@ -49,7 +51,24 @@
 </footer>
 <div class="popup-wrap js-popup-wrap">
     <div class="popup popup-enter js-popup js-popup-enter">
-        @if ( ($errors->has('email')) || ($errors->has('password')) )
+        @if ($message = Session::get('error'))
+            <div class="row" style="margin-bottom: 10px">
+                <div class="col-xs-12">
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <h4>Ошибка</h4>
+                        @if(is_array($message))
+                            @foreach ($message as $m)
+                                {{ $m }}
+                            @endforeach
+                        @else
+                            {{ $message }}
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
+        @if ( $message|| ($errors->has('email')) || ($errors->has('password')) )
             <script language="JavaScript">
                 $('body').css({'overflow':'hidden'});
                 $('.js-popup-wrap, .js-popup-enter').fadeIn();
