@@ -31,11 +31,11 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>имя</th>
-                <th>фамилия</th>
-                <th>дата рождения</th>
-                <th>эл. почта</th>
-                <th>подтверждена</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Дата рождения</th>
+                <th>Эл. почта</th>
+                <th>Подтверждена</th>
             </tr>
             </thead>
             <tbody>
