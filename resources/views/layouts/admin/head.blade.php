@@ -9,7 +9,10 @@
     <link href="<?=asset('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <script src="<?=asset('js/libs/jquery-2.2.4.min.js')?>"></script>
     <script src="<?=asset('bootstrap/js/bootstrap.min.js')?>"></script>
+    <link href="<?=asset('css/font-awesome.min.css')?>" rel="stylesheet">
     <link href="<?=asset('css/dashboard.css')?>" rel="stylesheet">
+    <link href="<?=asset('css/admin.css')?>" rel="stylesheet">
+    <script src="<?=asset('js/libs/jquery.form.min.js')?>"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="<?=asset('css/ie10-viewport-bug-workaround.css')?>" rel="stylesheet">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Главная</title>
+    <title>@section('html-page-title')Fimbo.ru @show</title>
     <meta name="description" content="Description">
     <meta name="keywords" content="Keywords">
     <link href="<?=asset('fonts/fonts.css')?>" rel="stylesheet">
@@ -31,15 +31,15 @@
     <div class="container">
         <div class="copir">© 2016 FIMBO.RU</div>
         <ul class="footer-menu">
-            <li class="footer-menu__li"><a href="javascript:void(0);" class="footer-menu__link">о нас         </a>
+            <li class="footer-menu__li"><a href="{{  url('/about_us')  }}" class="footer-menu__link">о нас         </a>
             </li>
             <li class="footer-menu__li"><a href="javascript:void(0);" class="footer-menu__link">написать нам          </a>
             </li>
             <li class="footer-menu__li"><a href="javascript:void(0);" class="footer-menu__link">блог          </a>
             </li>
-            <li class="footer-menu__li"><a href="javascript:void(0);" class="footer-menu__link">правила          </a>
+            <li class="footer-menu__li"><a href="{{  url('/rules')  }}" class="footer-menu__link">правила          </a>
             </li>
-            <li class="footer-menu__li"><a href="javascript:void(0);" class="footer-menu__link">пользовательское соглашение</a>
+            <li class="footer-menu__li"><a href="{{  url('/agreement')  }}" class="footer-menu__link">пользовательское соглашение</a>
             </li>
         </ul>
         <div class="footer-soc">

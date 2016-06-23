@@ -15,11 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/about_us', function () {
+    return view('static-content', ['page' => empty($page = App\Page::whereName('about_us')->first()) ? new App\Page : $page]);
+});
+Route::get('/rules', function () {
+    return view('static-content', ['page' => empty($page = App\Page::whereName('rules')->first()) ? new App\Page : $page]);
+});
+Route::get('/agreement', function () {
+    return view('static-content', ['page' => empty($page = App\Page::whereName('agreement')->first()) ? new App\Page : $page]);
+});
+
+Route::post('/upload', 'AdminController@upload');
 
 Route::group(['prefix' => 'admin'], function($router)
 {
     Route::get('/', 'AdminController@dashboard');
-    Route::get('/static-content', ['as' => 'staticContent', 'uses' => 'AdminController@staticContent']);
+    Route::get('/static-content/{name}', ['as' => 'staticContent', 'uses' => 'AdminController@staticContent']);
+    Route::post('/static-content/{name}/save', ['uses' => 'AdminController@saveStaticContent']);
+    Route::get('/static-content/{name}/delete/{id}', ['uses' => 'AdminController@deleteStaticContent']);
 });
 
 //http://fimbo/register/verify/pIQjLoGe86JRp5nBgRNEiQMVhnLwJCaeH2Pe9Uq4FBGr4IqVHEnAMuYRcziW

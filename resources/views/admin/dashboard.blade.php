@@ -1,7 +1,7 @@
 @extends('layouts.admin.main')
 
 @section('content')
-    <h1 class="page-header">Пульс</h1>
+    <h1 class="page-header">Статистика</h1>
 
     <div class="row placeholders">
         <div class="col-xs-6 col-sm-3 placeholder">
