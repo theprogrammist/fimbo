@@ -12,7 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $page = empty($page = App\Page::whereName('main')->first()) ? new App\Page : $page;
+    $page->contentHash = $page->content ? json_decode($page->content) : (object) App\Page::$fields;
+    return view('welcome', ['page' => $page, 'contentHash' => $page->content]);
 });
 
 Route::get('/about_us', function () {

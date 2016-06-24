@@ -40,8 +40,48 @@ class AdminController extends Controller
             ]);
     }
 
+    public function saveStaticContentMain(Request $request)
+    {
+        $fields = array_keys(Page::$fields);
+
+        $contentHash = array();
+        foreach($fields as $fld) {
+            $contentHash[$fld] = $request->input($fld);
+        }
+
+        foreach($request->file('learnbanner') as $file) {
+            if(!empty($file)){
+                $contentHash[$fld]['learnbanner'] = $this->uploadFile($file);
+            }
+        }
+
+        if(empty($page = Page::whereName('main')->first())) {
+            Page::create([
+                'title' => $request->input('title'),
+                'content' => json_encode($contentHash),
+                'type' => 'static',
+                'name' => 'main'
+            ]);
+        } else {
+            $page->title = $request->input('title');
+            $page->content = json_encode($contentHash);
+            $page->type = 'static';
+            $page->name = 'main';
+            $page->save();
+        }
+
+        return redirect()->route('staticContent', ['name' => 'main'])
+            ->with([
+                'message' => 'Изменения сохранены',
+            ]);
+    }
+
     public function saveStaticContent($name, Request $request)
     {
+        if($name == 'main') {
+            return $this->saveStaticContentMain($request);
+        }
+
         $validator = Validator::make(array_merge(['name' => $name], $request->all()),
             [
                 'title' => 'required|max:1024',

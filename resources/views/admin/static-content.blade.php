@@ -1,5 +1,12 @@
 @extends('layouts.admin.main')
 
+@if(Request::is('admin/static-content/main'))
+
+    @include('admin.static-content-main')
+
+@else
+
+
 @section('content')
     @if (($message = Session::get('error')) || ($message[] = $errors->first('name')))
         <div class="row" style="margin-bottom: 10px">
@@ -61,7 +68,7 @@
 
     <form method="post" action='{{ url(Request::url() . "/save") }}'>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="page_id" value="@if(!old('page_id')){{$page->page_id}}@endif{{ $page->id }}">
+        <input type="hidden" name="page_id" value="@if(!old('page_id')){{$page->id}}@endif{{ old('page_id') }}">
 
         <div class="form-group  {{ $errors->has('title') ? ' has-error' : '' }}">
             <input required="required" placeholder="Заголовок страницы (title)" type="text" name="title"
@@ -90,3 +97,6 @@
     </form>
 
 @endsection
+
+
+@endif
