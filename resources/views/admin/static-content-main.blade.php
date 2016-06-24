@@ -81,8 +81,8 @@
         @endforeach
     @endif
     <div class="form-group {{ $errors->has('learnbanner[]') ? ' has-error' : '' }}">
-        <div class="col-sm-10">
-            <div class="col-sm-8 col-sm-offset-3">
+        <div class="col-sm-12" style="padding-left: 5px">
+            <div class="col-sm-5 col-sm-offset-3">
                 {!! Form::file('learnbanner[]', null) !!}
             </div>
             <button type="button" class="btn btn-default text-right" onclick="duplicateAddFileBlock(this)" title="добавить еще файл">+</button>
@@ -112,8 +112,8 @@
         @endforeach
     @endif
     <div class="form-group {{ $errors->has('solvebanner[]') ? ' has-error' : '' }}">
-        <div class="col-sm-10">
-            <div class="col-sm-8 col-sm-offset-3">
+        <div class="col-sm-12" style="padding-left: 5px">
+            <div class="col-sm-5 col-sm-offset-3">
                 {!! Form::file('solvebanner[]', null) !!}
             </div>
             <button type="button" class="btn btn-default text-right" onclick="duplicateAddFileBlock(this)" title="добавить еще файл">+</button>
