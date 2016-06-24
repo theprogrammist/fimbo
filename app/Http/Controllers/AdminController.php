@@ -48,10 +48,25 @@ class AdminController extends Controller
         foreach($fields as $fld) {
             $contentHash[$fld] = $request->input($fld);
         }
-
+        if($request->has('uploaded_learnbanner')){
+            foreach($request->input('uploaded_learnbanner') as $file) {
+                $contentHash['learnbanner'][] = $file;
+            }
+        }
         foreach($request->file('learnbanner') as $file) {
             if(!empty($file)){
-                $contentHash[$fld]['learnbanner'] = $this->uploadFile($file);
+                $contentHash['learnbanner'][] = $this->uploadFile($file);
+            }
+        }
+
+        if($request->has('uploaded_solvebanner')){
+            foreach($request->input('uploaded_solvebanner') as $file) {
+                $contentHash['solvebanner'][] = $file;
+            }
+        }
+        foreach($request->file('solvebanner') as $file) {
+            if(!empty($file)){
+                $contentHash['solvebanner'][] = $this->uploadFile($file);
             }
         }
 

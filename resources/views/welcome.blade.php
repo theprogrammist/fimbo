@@ -15,7 +15,6 @@
         </div>
 
 
-
     <div class="header-info">
         <h2 class="h2 h2_white">{!! $page->contentHash->title !!}</h2>
         <p class="p p_white">{!! $page->contentHash->undertitle !!}</p>
@@ -45,16 +44,18 @@
                     </div>
                     <div class="learn__block-right">
                         <div class="slider">
-                            <div class="js-slider"><a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img1.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_erud"><span class="slider__item-span">эрудиция</span></span></a>
-                                <a
-                                        href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img2.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_mat"><span class="slider__item-span">Математика</span></span>
-                                </a><a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img3.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_eng"><span class="slider__item-span">английский язык</span></span></a>
-                                <a
-                                        href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img2.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_mat"><span class="slider__item-span">Математика</span></span>
-                                </a><a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img1.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_erud"><span class="slider__item-span">эрудиция</span></span></a>
-                                <a
-                                        href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img3.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_eng"><span class="slider__item-span">английский язык</span></span>
-                                </a>
+                            <div class="js-slider">
+                                @if (property_exists($page->contentHash, 'learnbanner'))
+                                    <?php
+                                        $classes = ['erud'=>'эрудиция','mat'=>'Математика','eng'=>'английский язык'];
+                                        $keys = array_keys($classes);
+                                        end($keys);
+                                    ?>
+                                    @foreach ($page->contentHash->learnbanner as $banner)
+                                            <?php $k=next($keys)?:reset($keys);?>
+                                        <a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="{{  url('/images/'.$banner)  }}" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_{{ $k }}"><span class="slider__item-span">{{ $classes[$k] }}</span></span></a>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -72,13 +73,18 @@
                     </div>
                     <div class="learn__block-right">
                         <div class="slider">
-                            <div class="js-slider"><a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img4.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_finance"><span class="slider__item-span">финансы</span></span></a>
-                                <a
-                                        href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img5.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_econom"><span class="slider__item-span">экономика</span></span>
-                                </a><a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img2.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_mat"><span class="slider__item-span">Математика</span></span></a>
-                                <a
-                                        href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="img/slider-img5.jpg" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_econom"><span class="slider__item-span">экономика</span></span>
-                                </a>
+                            <div class="js-slider">
+                                @if (property_exists($page->contentHash, 'solvebanner'))
+                                    <?php
+                                        $classes = ['finance'=>'финансы','econom'=>'экономика','mat'=>'Математика'];
+                                        $keys = array_keys($classes);
+                                        end($keys);
+                                    ?>
+                                    @foreach ($page->contentHash->solvebanner as $banner)
+                                            <?php $k=next($keys)?:reset($keys);?>
+                                        <a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="{{  url('/images/'.$banner)  }}" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_{{ $k }}"><span class="slider__item-span">{{ $classes[$k] }}</span></span></a>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -37,11 +37,15 @@
     @endif
 
     <script>
-        function duplicate(t) {
+        function duplicateAddFileBlock(t) {
             $obj = $(t).parent();
             $new = $obj.clone();
             $(t).remove();
             $obj.after($new);
+        }
+
+        function removeUploadedFile(t) {
+            $(t).parent().remove();
         }
     </script>
 
@@ -61,12 +65,27 @@
     <label class="col-sm-8 col-sm-offset-1">
         Баннеры блока "изучай..."
     </label>
+    @if (property_exists($page->contentHash, 'learnbanner'))
+        @foreach ($page->contentHash->learnbanner as $banner)
+            <div class="form-group {{ $errors->has('learnbanner[]') ? ' has-error' : '' }}">
+                <div class="col-sm-10">
+                    <div class="col-sm-8 col-sm-offset-3">
+                        <input type="hidden" name="uploaded_learnbanner[]" value="{{  $banner  }}">
+                        <img height="100" src="{{  url('/images/'.$banner)  }}"/>
+                        <a target="_blank" href="{{  url('/images/'.$banner)  }}">открыть в новом окне</a>
+                    </div>
+                    <button type="button" class="btn btn-default text-right" onclick="removeUploadedFile(this)"
+                            title="удалить">&ndash;</button>
+                </div>
+            </div>
+        @endforeach
+    @endif
     <div class="form-group {{ $errors->has('learnbanner[]') ? ' has-error' : '' }}">
         <div class="col-sm-10">
             <div class="col-sm-8 col-sm-offset-3">
                 {!! Form::file('learnbanner[]', null) !!}
             </div>
-            <button type="button" class="btn btn-default text-right" onclick="duplicate(this)">+</button>
+            <button type="button" class="btn btn-default text-right" onclick="duplicateAddFileBlock(this)" title="добавить еще файл">+</button>
         </div>
     </div>
 
@@ -77,12 +96,27 @@
     <label class="col-sm-8 col-sm-offset-1">
         Баннеры блока "решай..."
     </label>
+    @if (property_exists($page->contentHash, 'solvebanner'))
+        @foreach ($page->contentHash->solvebanner as $banner)
+            <div class="form-group {{ $errors->has('solvebanner[]') ? ' has-error' : '' }}">
+                <div class="col-sm-10">
+                    <div class="col-sm-8 col-sm-offset-3">
+                        <input type="hidden" name="uploaded_solvebanner[]" value="{{  $banner  }}">
+                        <img height="100" src="{{  url('/images/'.$banner)  }}"/>
+                        <a target="_blank" href="{{  url('/images/'.$banner)  }}">открыть в новом окне</a>
+                    </div>
+                    <button type="button" class="btn btn-default text-right" onclick="removeUploadedFile(this)"
+                            title="удалить">&ndash;</button>
+                </div>
+            </div>
+        @endforeach
+    @endif
     <div class="form-group {{ $errors->has('solvebanner[]') ? ' has-error' : '' }}">
         <div class="col-sm-10">
             <div class="col-sm-8 col-sm-offset-3">
                 {!! Form::file('solvebanner[]', null) !!}
             </div>
-            <button type="button" class="btn btn-default" onclick="duplicate(this)">+</button>
+            <button type="button" class="btn btn-default text-right" onclick="duplicateAddFileBlock(this)" title="добавить еще файл">+</button>
         </div>
     </div>
 
