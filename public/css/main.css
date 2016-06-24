@@ -725,8 +725,8 @@ body {
 
 .slider__item {
     background: #fff;
-    border-right: 5px solid #fff;
-    border-bottom: 5px solid #fff;
+    /*border-right: 5px solid #fff;
+    border-bottom: 5px solid #fff;*/
     box-shadow: rgba(0,0,0,0.04) 1px 2px 2px 0px;
     display: block;
     text-decoration: none;
