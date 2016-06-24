@@ -47,7 +47,7 @@
                             <div class="js-slider">
                                 @if (property_exists($page->contentHash, 'learnbanner'))
                                     <?php
-                                        $classes = ['erud'=>'эрудиция','mat'=>'Математика','eng'=>'английский язык'];
+                                        $classes = ['none'=>'']; //'erud'=>'эрудиция','mat'=>'Математика','eng'=>'английский язык'];
                                         $keys = array_keys($classes);
                                         end($keys);
                                     ?>
@@ -76,7 +76,7 @@
                             <div class="js-slider">
                                 @if (property_exists($page->contentHash, 'solvebanner'))
                                     <?php
-                                        $classes = ['finance'=>'финансы','econom'=>'экономика','mat'=>'Математика'];
+                                        $classes = ['none'=>'']; //'finance'=>'финансы','econom'=>'экономика','mat'=>'Математика'];
                                         $keys = array_keys($classes);
                                         end($keys);
                                     ?>
