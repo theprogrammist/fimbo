@@ -53,7 +53,7 @@
                                     ?>
                                     @foreach ($page->contentHash->learnbanner as $banner)
                                             <?php $k=next($keys)?:reset($keys);?>
-                                        <a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="{{  url('/images/'.$banner)  }}" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_{{ $k }}"><span class="slider__item-span">{{ $classes[$k] }}</span></span></a>
+                                        <a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="{{  url('/images/'.$banner)  }}" alt="slider-img" class="slider__item-img"></span><!--span class="slider__item-title slider__item-title_{{ $k }}"><span class="slider__item-span">{{ $classes[$k] }}</span></span--></a>
                                     @endforeach
                                 @endif
                             </div>
@@ -82,7 +82,7 @@
                                     ?>
                                     @foreach ($page->contentHash->solvebanner as $banner)
                                             <?php $k=next($keys)?:reset($keys);?>
-                                        <a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="{{  url('/images/'.$banner)  }}" alt="slider-img" class="slider__item-img"></span><span class="slider__item-title slider__item-title_{{ $k }}"><span class="slider__item-span">{{ $classes[$k] }}</span></span></a>
+                                        <a href="javascript:void(0);" class="slider__item"><span class="slider__item-image"><img src="{{  url('/images/'.$banner)  }}" alt="slider-img" class="slider__item-img"></span><!--span class="slider__item-title slider__item-title_{{ $k }}"><span class="slider__item-span">{{ $classes[$k] }}</span></span--></a>
                                     @endforeach
                                 @endif
                             </div>
