@@ -68,8 +68,8 @@
     @if (property_exists($page->contentHash, 'learnbanner'))
         @foreach ($page->contentHash->learnbanner as $banner)
             <div class="form-group {{ $errors->has('learnbanner[]') ? ' has-error' : '' }}">
-                <div class="col-sm-10">
-                    <div class="col-sm-8 col-sm-offset-3">
+                <div class="col-sm-12" style="padding-left: 5px">
+                    <div class="col-sm-5 col-sm-offset-3">
                         <input type="hidden" name="uploaded_learnbanner[]" value="{{  $banner  }}">
                         <img height="100" src="{{  url('/images/'.$banner)  }}"/>
                         <a target="_blank" href="{{  url('/images/'.$banner)  }}">открыть в новом окне</a>
@@ -99,8 +99,8 @@
     @if (property_exists($page->contentHash, 'solvebanner'))
         @foreach ($page->contentHash->solvebanner as $banner)
             <div class="form-group {{ $errors->has('solvebanner[]') ? ' has-error' : '' }}">
-                <div class="col-sm-10">
-                    <div class="col-sm-8 col-sm-offset-3">
+                <div class="col-sm-12" style="padding-left: 5px">
+                    <div class="col-sm-5 col-sm-offset-3">
                         <input type="hidden" name="uploaded_solvebanner[]" value="{{  $banner  }}">
                         <img height="100" src="{{  url('/images/'.$banner)  }}"/>
                         <a target="_blank" href="{{  url('/images/'.$banner)  }}">открыть в новом окне</a>
