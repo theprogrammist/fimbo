@@ -18,7 +18,7 @@
     </li>
     <li class="lections <?=Request::segment(2)==='lection' ? 'active':''?>">
         <a href="{{ url('admin/lection/new') }}">
-            Лекции
+            Лекции<span style="display: inline-block;float: right;">+</span>
         </a>
         @foreach(App\Page::whereType('lection')->whereParentId(null)->get() as $pg)
             <ul>
