@@ -35,6 +35,10 @@ Route::group(['prefix' => 'admin'], function($router)
     Route::get('/static-content/{name}', ['as' => 'staticContent', 'uses' => 'AdminController@staticContent']);
     Route::post('/static-content/{name}/save', ['uses' => 'AdminController@saveStaticContent']);
     Route::get('/static-content/{name}/delete/{id}', ['uses' => 'AdminController@deleteStaticContent']);
+
+    Route::get('/lection/{id}', ['uses' => 'LectionController@show']);
+    Route::post('/lection/{id}/save', ['uses' => 'LectionController@save']);
+    Route::get('/lection/{id}/delete', ['uses' => 'LectionController@delete']);
 });
 
 //http://fimbo/register/verify/pIQjLoGe86JRp5nBgRNEiQMVhnLwJCaeH2Pe9Uq4FBGr4IqVHEnAMuYRcziW

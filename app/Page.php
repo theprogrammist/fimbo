@@ -29,7 +29,21 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'title', 'content'
+        'name', 'type', 'title', 'content', 'parent_id'
     ];
 
+    public function parent()
+    {
+        return $this->belongsTo(get_class($this), 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(get_class($this), 'parent_id');
+    }
+
+    public static function getTree()
+    {
+        $zeroLevel = self::whereParentId(null)->get();
+    }
 }

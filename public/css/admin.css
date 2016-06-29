@@ -4,5 +4,20 @@
 .list-group-submenu > .active > a {
     color: #fff;
     background-color: #428bca;
-    background-color: rgba(	66, 139, 202, 0.6)
+    background-color: rgba(	66, 139, 202, 0.6);
+}
+.nav>li.active>a:hover {
+    background-color: rgba(	66, 139, 202, 0.6);
+}
+.lections li {
+    list-style: none;
+}
+.lections a {
+    text-decoration: none;
+    display: block;
+}
+.lections a.active {
+    color: #fff;
+    background-color: #428bca;
+    background-color: rgba(66, 139, 202, 0.6);
 }

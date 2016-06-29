@@ -16,6 +16,29 @@
             <li class="<?=Request::segment(3)==='agreement' ? 'active':''?>"><a href="{{ route('staticContent', ['name'=>'agreement']) }}">Пользовательское соглашение</a></li>
         </ul>
     </li>
+    <li class="lections <?=Request::segment(2)==='lection' ? 'active':''?>">
+        <a href="{{ url('admin/lection/new') }}">
+            Лекции
+        </a>
+        @foreach(App\Page::whereType('lection')->whereParentId(null)->get() as $pg)
+            <ul>
+                <li>
+                    <a href="{{ url('admin/lection/' . $pg->id) }}" class="<?=Request::segment(3) == $pg->id ? 'active':''?>">
+                        {{$pg->title}}
+
+                        @foreach($pg->children as $chld)
+                            <ul>
+                                <li>
+                                    <a href="{{ url('admin/lection/' . $chld->id) }}" class="<?=Request::segment(3) == $chld->id ? 'active':''?>">{{$chld->title}}</a>
+                                </li>
+                            </ul>
+                        @endforeach
+
+                    </a>
+                </li>
+            </ul>
+        @endforeach
+    </li>
 </ul>
 
 

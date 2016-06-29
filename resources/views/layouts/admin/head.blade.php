@@ -12,7 +12,9 @@
     <link href="<?=asset('css/font-awesome.min.css')?>" rel="stylesheet">
     <link href="<?=asset('css/dashboard.css')?>" rel="stylesheet">
     <link href="<?=asset('css/admin.css')?>" rel="stylesheet">
+    <link href="<?=asset('js/libs/select2-4.0.3/css/select2.min.css')?>" rel="stylesheet">
     <script src="<?=asset('js/libs/jquery.form.min.js')?>"></script>
+    <script src="<?=asset('js/libs/select2-4.0.3/js/select2.full.min.js')?>"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="<?=asset('css/ie10-viewport-bug-workaround.css')?>" rel="stylesheet">
