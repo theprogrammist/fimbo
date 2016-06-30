@@ -75,22 +75,42 @@
 
 @if(!($page->type == 'lection') || $page->parent)
 @if(!(Request::segment(2)==='lection' && Request::segment(3)==='new'))
-    <div class="row">
+    <div class="row" style="height: 32px;">
         @if (trim($__env->yieldContent('parent-selector')))
             @yield('parent-selector')
             <?php $width = 'col-sm-8 ';?>
         @endif
 
-        <div class="{{ $width or '' }}form-group  {{ $errors->has('title') ? ' has-error' : '' }}"
+        <div class="{{ $width or '' }}form-group <?=(Request::segment(2)==='lection')?' col-sm-11 ':''?> {{ $errors->has('title') ? ' has-error' : '' }}"
              style="padding-right: 0px;">
-            <input required="required" placeholder="Заголовок страницы (title)" type="text" name="title"
-                   class="form-control" value="@if(!old('title')){{$page->title}}@endif{{ old('title') }}"/>
-            @if ($errors->has('title'))
-                <span class="help-block">
-                        <strong>{{ $errors->first('title') }}</strong>
-                    </span>
+            @if(!Request::segment(2)==='lection')
+                <input required="required" placeholder="Заголовок страницы (title)" type="text" name="title"
+                       class="form-control" value="@if(!old('title')){{$page->title}}@endif{{ old('title') }}"/>
+                @if ($errors->has('title'))
+                    <span class="help-block">
+                            <strong>{{ $errors->first('title') }}</strong>
+                        </span>
+                @endif
             @endif
         </div>
+            @if(Request::segment(2)==='lection')
+                <?php $name = 'number'; $caption = 'Номер страницы  &nbsp; '; ?>
+                <div class="{{ $errors->has($name) ? ' has-error' : '' }}" style="position: relative;top: -25px;">
+
+                    <div class="col-sm-3" style="padding-right: 0;float: right">
+                        <label class="control-label text-right" style="display: inline">
+                            {{ $caption  }}
+                        </label>
+                        <input type="text" name="{{$name}}" class="form-control"  style="width: 100px;display: inline-block;"
+                               value="@if(!old($name)){{$page->$name}}@endif{{ old($name) }}"/>
+                    </div>
+                    @if ($errors->has($name))
+                        <span class="help-block">
+                        <strong>{{ $errors->first($name) }}</strong>
+                    </span>
+                    @endif
+                </div>
+            @endif
     </div>
 @endif
 @endif

@@ -1,7 +1,7 @@
 @extends('layouts.admin.main')
 
 @section('child-selector')
-    <div class="col-sm-11 {{ $errors->has('parent_id') ? ' has-error' : '' }}" style="margin-top: -20px;">
+    <div class="col-sm-11 {{ $errors->has('parent_id') ? ' has-error' : '' }}" style="margin-top: -29px;">
         <label>Страницы</label>
         <select data-name="parent_id"></select>
 
@@ -74,7 +74,7 @@
 @section('lection-fields')
     @if($page->parent)
 
-        <h4>Страница лекции <a href="{{ url('admin/lection/' . $page->parent->id) }}">{{ $page->parent->title }}</h4>
+        <h4>Страница лекции <a href="{{ url('admin/lection/' . $page->parent->id) }}">{{ $page->parent->title }}</a></h4>
 
     @else
 
@@ -86,7 +86,7 @@
                     {{ $caption  }}
                 </label>
 
-                <div class="col-sm-4">
+                <div class="col-sm-6" style="padding-right: 0;">
                     <input type="text" name="{{$name}}" class="form-control"
                            value="@if(!old($name)){{$page->$name}}@endif{{ old($name) }}"/>
                 </div>
@@ -97,22 +97,7 @@
                 @endif
             </div>
 
-            <?php $name = 'number'; $caption = 'Номер'; ?>
-            <div class="{{ $errors->has($name) ? ' has-error' : '' }}">
-                <label class="col-sm-1 control-label text-right">
-                    {{ $caption  }}
-                </label>
 
-                <div class="col-sm-1">
-                    <input type="text" name="{{$name}}" class="form-control"
-                           value="@if(!old($name)){{$page->$name}}@endif{{ old($name) }}"/>
-                </div>
-                @if ($errors->has($name))
-                    <span class="help-block">
-                        <strong>{{ $errors->first($name) }}</strong>
-                    </span>
-                @endif
-            </div>
 
 
             <div class="col-sm-5" style="height:36px;">
@@ -151,16 +136,16 @@
                 <div class="col-sm-1">
                     <select class="form-control" name="{{$name}}" style="padding-left: 2px;padding-right: 0;width: 89px;">
                         <option value="1" <?= (empty(old($name)) ? $page->$name : old($name)) == 1 ? 'selected' : '' ?>>
-                            просто
+                            Просто
                         </option>
                         <option value="2" <?= (empty(old($name)) ? $page->$name : old($name)) == 2 ? 'selected' : '' ?>>
-                            несложно
+                            Несложно
                         </option>
                         <option value="3" <?= (empty(old($name)) ? $page->$name : old($name)) == 3 ? 'selected' : '' ?>>
-                            непросто
+                            Непросто
                         </option>
                         <option value="4" <?= (empty(old($name)) ? $page->$name : old($name)) == 4 ? 'selected' : '' ?>>
-                            сложно
+                            Сложно
                         </option>
                     </select>
                 </div>
