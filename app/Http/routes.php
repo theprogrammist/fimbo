@@ -37,6 +37,10 @@ Route::group(['prefix' => 'admin'], function($router)
     Route::get('/static-content/{name}/delete/{id}', ['uses' => 'AdminController@deleteStaticContent']);
 
     Route::get('/lection/{id}', ['uses' => 'LectionController@show']);
+    Route::get('/lection/newpage/{id}', function ($id) {
+        return view('admin.lection', ['page' => new App\Page, 'id' => $id]);
+    });
+    Route::post('/lection/newpage/{id}/save', ['uses' => 'LectionController@save']);
     Route::post('/lection/{id}/save', ['uses' => 'LectionController@save']);
     Route::get('/lection/{id}/delete', ['uses' => 'LectionController@delete']);
 });

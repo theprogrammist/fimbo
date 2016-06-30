@@ -25,7 +25,7 @@ class AdminController extends Controller
     {
         $page = Page::whereName($name)->first();
 
-        $page = empty($page) ? new Page : $page;
+        $page = empty($page) ? (new Page)->setAttribute('type','static') : $page;
 
         return view('admin.static-content', ['page' => $page]);
     }

@@ -64,6 +64,17 @@
         <h3>Новая лекция</h3>
     @endif
 
+@if(!(Request::segment(2)==='lection' && Request::segment(3)==='newpage'))
+    @yield('lection-fields')
+@endif
+
+@if(Request::segment(2)==='lection' && Request::segment(3)==='newpage')
+    <h3>Новая cтраница лекции <a href="{{ url('admin/lection/' . $id) }}">{{ App\Page::find($id)->title }}</a></h3>
+    <input type="hidden" name="parent_id" value="{{ $id }}"/>
+@endif
+
+@if(!($page->type == 'lection') || $page->parent)
+@if(!(Request::segment(2)==='lection' && Request::segment(3)==='new'))
     <div class="row">
         @if (trim($__env->yieldContent('parent-selector')))
             @yield('parent-selector')
@@ -81,6 +92,8 @@
             @endif
         </div>
     </div>
+@endif
+@endif
     <div class="row">
         <div class="form-group  {{ $errors->has('content') ? ' has-error' : '' }}">
                 <textarea name='content' class="form-control" rows="20">
@@ -101,6 +114,7 @@
     @if (Request::segment(2)==='lection' && is_numeric(Request::segment(3)))
         <a href="{{  url(Request::url() . '/delete/?_token='.csrf_token()) }}" class="btn btn-danger">Удалить</a>
     @elseif(Request::segment(2)==='lection' && Request::segment(3)==='new')
+    @elseif(Request::segment(2)==='lection' && Request::segment(3)==='newpage')
     @else
         <a href="{{  url(Request::url() . '/delete/'.$page->id.'?_token='.csrf_token()) }}" class="btn btn-danger">Удалить</a>
     @endif

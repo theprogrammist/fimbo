@@ -29,7 +29,7 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'title', 'content', 'parent_id'
+        'name', 'type', 'title', 'content', 'parent_id', 'number', 'difficulty', 'course'
     ];
 
     public function parent()

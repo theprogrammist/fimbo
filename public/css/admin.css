@@ -21,3 +21,6 @@
     background-color: #428bca;
     background-color: rgba(66, 139, 202, 0.6);
 }
+.lection-fields label {
+    padding-top: 4px;
+}

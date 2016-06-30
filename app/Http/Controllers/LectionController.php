@@ -21,7 +21,7 @@ class LectionController extends Controller
 
         $lection = empty($lection) ? new Page : $lection;
 
-        return view('admin.lection', ['page' => $lection]);
+        return view('admin.lection', ['page' => $lection, 'id' => $id]);
     }
 
     public function save($id = null, Request $request)
@@ -45,7 +45,12 @@ class LectionController extends Controller
             $page->title = $request->input('title');
             $page->content = $request->input('content');
             $page->type = 'lection';
-            $page->parent_id = $request->input('parent_id');
+            if($request->has('parent_id')) {
+                $page->parent_id = $request->input('parent_id');
+            }
+            $page->number = $request->input('number');
+            $page->difficulty = $request->input('difficulty');
+            $page->course = $request->input('course');
 
             $page->save();
         } else {
@@ -53,6 +58,9 @@ class LectionController extends Controller
                 'title' => $request->input('title'),
                 'content' => $request->input('content'),
                 'type' => 'lection',
+                'number' => $request->input('number'),
+                'difficulty' => $request->input('difficulty'),
+                'course' => $request->input('course'),
                 'parent_id' => $request->input('parent_id'),
             ]);
         }
