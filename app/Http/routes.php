@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/cabinet/', function() {
+    return view('cabinet');
+});
+
 Route::get('/about_us', function () {
     return view('static-content', ['page' => empty($page = App\Page::whereName('about_us')->first()) ? new App\Page : $page]);
 });

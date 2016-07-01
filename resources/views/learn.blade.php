@@ -5,7 +5,7 @@
 @overwrite
 
 @section('content')
-
+@yield('solve')
     <div class="content-full content-full_nopad">
         <div class="decided">
             <h2 class="h2 decided__h2 decided__h2_nobg">Учись</h2>

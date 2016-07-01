@@ -26,11 +26,11 @@
     </div>
     <input type="hidden" name="lectionId" id="lectionId" value="{{ $lectionId }}">
 <script>
-$(function(){
+window.setPageSelected = function() {
     if({{ $pageNum or false }}) {
         var sequenceNum = $('.owl-item:not(.cloned) > div.item').index($('.owl-item:not(.cloned) > div.item[data-number="{{ $pageNum }}"'))
         $('.js-read-lection-slider').data('owl.carousel').to(sequenceNum);
     }
-});
+};
 </script>
 @endsection

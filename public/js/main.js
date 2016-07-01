@@ -391,6 +391,7 @@ $(function () {
 
 
   // slider lection
+  setTimeout(function(){
   $('.js-read-lection-slider').owlCarousel({
     items: 1,
     loop:true,
@@ -400,8 +401,12 @@ $(function () {
     autoHeight:true,
     mouseDrag: false,
     touchDrag: false,
+    resizeTimer: 1500,
+    animateIn:true,
+    lazyLoad:true,
   });
-
+  },50);
+  window.setPageSelected();
 });
 
 $(function () {
