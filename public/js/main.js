@@ -401,9 +401,6 @@ $(function () {
     autoHeight:true,
     mouseDrag: false,
     touchDrag: false,
-    resizeTimer: 1500,
-    animateIn:true,
-    lazyLoad:true,
   });
     if('setPageSelected' in window) window.setPageSelected();
     window.renuumerate();
@@ -422,10 +419,10 @@ $(function () {
 
       $active = typeof(e) !== 'undefined' ? $(e.target) : $('div.js-read-lection-slider .owl-dot.active');
 
-      $active.find('a').text('Страница ' + $active.find('a').text());
+      $active.find('a').html('<span style="padding-right: 10px;">Страница</span>' + $active.find('a').text());
 
-      setTimeout(function(){$('.owl-item:not(.cloned) > div.item').hide();setTimeout(function(){$('.owl-item:not(.cloned) > div.item').show();},150)},150);
-    }, 350);
+      //setTimeout(function(){$('.owl-item:not(.cloned) > div.item').hide();setTimeout(function(){$('.owl-item:not(.cloned) > div.item').show();},150)},150);
+    }, 50);
   };
 
   //renuumerate();

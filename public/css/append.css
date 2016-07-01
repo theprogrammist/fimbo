@@ -110,3 +110,6 @@ div.has-error {
     letter-spacing: 2px;
 
 }
+.owl-item img {
+    transform-style: flat !important;
+}

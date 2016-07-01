@@ -15,12 +15,26 @@
 
                 @foreach($lection->children as $page)
                 <div class="item" data-number="{{ $page->number }}">
-                    <div class="item text">
+                    <div class="item text contentContainer">
                         {!! $page->content !!}
                     </div>
                 </div>
                 @endforeach
-
+<script>
+    for(c in o = document.getElementsByClassName('contentContainer')) {
+        if(typeof o[c].tagName != 'undefined') {
+            for(i in oo = o[c].getElementsByTagName('img')) {
+                if(typeof oo[i].tagName != 'undefined') {
+                    if(typeof(src = oo[i].getAttribute('src')) != 'undefined') {
+                        var img = new Image();
+                        img.src = src;
+                        console.log(img);
+                    }
+                }
+            }
+        }
+    }
+</script>
             </div>
         </div>
     </div>
