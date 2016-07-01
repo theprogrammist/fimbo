@@ -33,6 +33,8 @@
     </div>
 @endif
 
+@if(Request::segment(2)==='lection' && (Request::segment(3)==='new' || ($page->id > 0 && $page->parent === null)))
+@else
 <script type="text/javascript" src="{{ asset('/js/libs/tinymce/tinymce.min.js') }}"></script>
 <script type="text/javascript">
     tinymce.init({
@@ -48,6 +50,7 @@
         }
     });
 </script>
+@endif
 
 <iframe id="form_target" name="form_target" style="display:none"></iframe>
 
@@ -116,12 +119,8 @@
 @endif
     <div class="row">
         <div class="form-group  {{ $errors->has('content') ? ' has-error' : '' }}">
-                <textarea name='content' class="form-control" rows="20">
-                    @if(!old('content'))
-                        {!! $page->content !!}
-                    @endif
-                    {!! old('content') !!}
-                </textarea>
+                <textarea name='content' class="form-control" rows="20">@if(!old('content')){!! $page->content !!}@endif{!! old('content') !!}</textarea>
+
             @if ($errors->has('content'))
                 <span class="help-block">
                         <strong>{{ $errors->first('content') }}</strong>

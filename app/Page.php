@@ -23,6 +23,7 @@ class Page extends Model
         'earnicontext3' => 'Текст к иконке 3',
     ];
 
+    public static $difficultyNames = [1 => 'Просто', 2 =>  'Несложно', 3 => 'Непросто', 4 => 'Сложно'];
     /**
      * The attributes that are mass assignable.
      *

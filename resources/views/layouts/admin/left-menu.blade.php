@@ -29,7 +29,7 @@
                         @foreach($pg->children as $chld)
                             <ul>
                                 <li>
-                                    <a href="{{ url('admin/lection/' . $chld->id) }}" class="<?=Request::segment(3) == $chld->id ? 'active':''?>">{{$chld->title}}</a>
+                                    <a href="{{ url('admin/lection/' . $chld->id) }}" class="<?=Request::segment(3) == $chld->id ? 'active':''?>">Страница&nbsp;{{$chld->number}}</a>
                                 </li>
                             </ul>
                         @endforeach

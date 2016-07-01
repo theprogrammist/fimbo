@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    $page = empty($page = App\Page::whereName('main')->first()) ? new App\Page : $page;
-    $page->contentHash = $page->content ? json_decode($page->content) : (object) App\Page::$fields;
-    return view('welcome', ['page' => $page, 'contentHash' => $page->content]);
+    if(Auth::guest()) {
+        $page = empty($page = App\Page::whereName('main')->first()) ? new App\Page : $page;
+        $page->contentHash = $page->content ? json_decode($page->content) : (object) App\Page::$fields;
+        return view('welcome', ['page' => $page, 'contentHash' => $page->content]);
+    }
+    return view('home');
 });
 
 Route::get('/about_us', function () {
@@ -27,22 +30,32 @@ Route::get('/agreement', function () {
     return view('static-content', ['page' => empty($page = App\Page::whereName('agreement')->first()) ? new App\Page : $page]);
 });
 
-Route::post('/upload', 'AdminController@upload');
+
+Route::get('/lection/{lectionId}/{pageNum}', ['uses' => 'LectionController@show']);
+Route::get('/lection/{lectionId}/', function($lectionId) {
+    return redirect('/lection/'.$lectionId . '/1');
+});
+Route::get('/lection/', function() {
+    return view('learn');
+});
+
+
+Route::post('/upload', 'Admin\AdminController@upload');
 
 Route::group(['prefix' => 'admin'], function($router)
 {
-    Route::get('/', 'AdminController@dashboard');
-    Route::get('/static-content/{name}', ['as' => 'staticContent', 'uses' => 'AdminController@staticContent']);
-    Route::post('/static-content/{name}/save', ['uses' => 'AdminController@saveStaticContent']);
-    Route::get('/static-content/{name}/delete/{id}', ['uses' => 'AdminController@deleteStaticContent']);
+    Route::get('/', 'Admin\AdminController@dashboard');
+    Route::get('/static-content/{name}', ['as' => 'staticContent', 'uses' => 'Admin\AdminController@staticContent']);
+    Route::post('/static-content/{name}/save', ['uses' => 'Admin\AdminController@saveStaticContent']);
+    Route::get('/static-content/{name}/delete/{id}', ['uses' => 'Admin\AdminController@deleteStaticContent']);
 
-    Route::get('/lection/{id}', ['uses' => 'LectionController@show']);
+    Route::get('/lection/{id}', ['uses' => 'Admin\LectionController@show']);
     Route::get('/lection/newpage/{id}', function ($id) {
         return view('admin.lection', ['page' => new App\Page, 'id' => $id]);
     });
-    Route::post('/lection/newpage/{id}/save', ['uses' => 'LectionController@save']);
-    Route::post('/lection/{id}/save', ['uses' => 'LectionController@save']);
-    Route::get('/lection/{id}/delete', ['uses' => 'LectionController@delete']);
+    Route::post('/lection/newpage/{id}/save', ['uses' => 'Admin\LectionController@save']);
+    Route::post('/lection/{id}/save', ['uses' => 'Admin\LectionController@save']);
+    Route::get('/lection/{id}/delete', ['uses' => 'Admin\LectionController@delete']);
 });
 
 //http://fimbo/register/verify/pIQjLoGe86JRp5nBgRNEiQMVhnLwJCaeH2Pe9Uq4FBGr4IqVHEnAMuYRcziW
@@ -58,4 +71,4 @@ Route::get('/register/success', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');

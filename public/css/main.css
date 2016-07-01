@@ -4275,11 +4275,11 @@ label.error {
     height: 30px;
     line-height: 32px;
 }
-
+/*
 .read-comics .owl-dot:before {
     counter-increment: dot;
     content: counter(dot);
-}
+}*/
 
 .read-comics .owl-dot.active {
     background: rgba(255,255,255,0.1);
@@ -4298,9 +4298,14 @@ label.error {
       */
 }
 
-.read-comics .owl-dot.active:before {
+/*.read-comics .owl-dot.active:before {
     counter-increment: dot;
     content: 'Страница ' counter(dot);
+}*/
+
+.read-comics .owl-dot a {
+    color:white;
+    text-decoration: none;
 }
 
 .read-comics_lection {

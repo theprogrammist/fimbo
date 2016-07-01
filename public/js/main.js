@@ -84,7 +84,7 @@ $(function () {
     event.stopPropagation();
   });
 
-  // language 
+  // language
   $('.js-lang-select').click(function(){
     $(this).find('.js-hidden-lang').slideToggle();
   });
@@ -94,7 +94,7 @@ $(function () {
     $(this).parent().find('.js-profile-hidden').slideToggle();
   });
 
-  
+
   // slider-five
   $owlFive = $('.js-slider-five');
   var owlFive_Settings = {
@@ -146,7 +146,7 @@ $(function () {
   fiveSlide();
 
 
-  // animated 
+  // animated
   $.fn.extend({
     animateCss: function (animationName) {
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -181,7 +181,7 @@ $(function () {
   });
 
 
-  // calendar 
+  // calendar
   $( ".js-datepicker " ).datepicker({
     dateFormat: "d MM yy",
     changeMonth: true,
@@ -190,24 +190,24 @@ $(function () {
     altFormat: "yy-mm-dd",
     yearRange: '1950:'
   });
-  
-  $.datepicker.regional['ru'] = { 
-    closeText: 'Закрыть', 
-    prevText: '&#x3c;Пред', 
-    nextText: 'След&#x3e;', 
-    currentText: 'Сегодня', 
-    monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь', 
-    'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'], 
-    monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн', 
-    'Июл','Авг','Сен','Окт','Ноя','Дек'], 
-    dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'], 
-    dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'], 
-    dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], 
-    dateFormat: 'dd.mm.yy', 
-    firstDay: 1, 
+
+  $.datepicker.regional['ru'] = {
+    closeText: 'Закрыть',
+    prevText: '&#x3c;Пред',
+    nextText: 'След&#x3e;',
+    currentText: 'Сегодня',
+    monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+    'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+    monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+    'Июл','Авг','Сен','Окт','Ноя','Дек'],
+    dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+    dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+    dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+    dateFormat: 'dd.mm.yy',
+    firstDay: 1,
     isRTL: false
-    }; 
-    $.datepicker.setDefaults($.datepicker.regional['ru']); 
+    };
+    $.datepicker.setDefaults($.datepicker.regional['ru']);
   $('.datepicker').click(function(){
     $('.js-datepicker').trigger('focus');
   });
@@ -233,7 +233,7 @@ $(function () {
       form.submit();
     }
   });
-  
+
   !function(a){"function"==typeof define&&define.amd?define(["jquery","../jquery.validate.min"],a):"object"==typeof module&&module.exports?module.exports=a(require("jquery")):a(jQuery)}(function(a){a.extend(a.validator.messages,{required:"Это поле необходимо заполнить.",remote:"Пожалуйста, введите правильное значение.",email:"Пожалуйста, введите корректный адрес электронной почты.",url:"Пожалуйста, введите корректный URL.",date:"Пожалуйста, введите корректную дату.",dateISO:"Пожалуйста, введите корректную дату в формате ISO.",number:"Пожалуйста, введите число.",digits:"Пожалуйста, вводите только цифры.",creditcard:"Пожалуйста, введите правильный номер кредитной карты.",equalTo:"Пожалуйста, введите такое же значение ещё раз.",extension:"Пожалуйста, выберите файл с правильным расширением.",maxlength:a.validator.format("Пожалуйста, введите не больше {0} символов."),minlength:a.validator.format("Пожалуйста, введите не меньше {0} символов."),rangelength:a.validator.format("Пожалуйста, введите значение длиной от {0} до {1} символов."),range:a.validator.format("Пожалуйста, введите число от {0} до {1}."),max:a.validator.format("Пожалуйста, введите число, меньшее или равное {0}."),min:a.validator.format("Пожалуйста, введите число, большее или равное {0}.")})});
 
 
@@ -265,7 +265,7 @@ $(function () {
   var decideMonth = $('.js-decide-month').data('number');
   $('.js-decide-month').animateNumber({ number: decideMonth }, time);
 
-  // animation circle 
+  // animation circle
   if($('.js-target-last').length){
     var trTop = $('.js-target-last').offset().top;
     var flag = 1;
@@ -402,4 +402,28 @@ $(function () {
     touchDrag: false,
   });
 
+});
+
+$(function () {
+  function renuumerate(e) {
+    setTimeout(function (e) {
+      $('.owl-item:not(.cloned) > div.item').each(function (i, el) {
+        $('div.js-read-lection-slider .owl-dot').eq(i).html(('<a style="position:relative;z-index:1000" href="/lection/' + $('#lectionId').val() +'/' + $(el).attr('data-number') + '">' + $(el).attr('data-number') + '</a>' || ''));
+      });
+
+      $active = typeof(e) !== 'undefined' ? $(e.target) : $('div.js-read-lection-slider .owl-dot.active');
+
+      $active.find('a').text('Страница ' + $active.find('a').text());
+    }, 50);
+  }
+
+  renuumerate();
+
+  $('div.js-read-lection-slider .owl-dot').click(function (el) {
+    renuumerate(el)
+    /* in case mishit within a and is container */
+    var href = $(el.target).attr('href') || $(el.target).find('a').attr('href');
+    //window.location.href = href;
+    window.history.pushState({},"", href);
+  });
 });
