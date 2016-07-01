@@ -11,7 +11,6 @@
                 </div>
             </a>
 
-            <div class="slider__item-point"><span class="slider__item-point-span">40 </span>очков</div>
             <div class="slider__item-level slider__item-level_<?=array('green', 'yellow', 'red')[rand(0, 2)]?>">
                 {{ (empty($lct->difficulty))?App\Page::$difficultyNames[1] : App\Page::$difficultyNames[$lct->difficulty] }}</div>
         </div>

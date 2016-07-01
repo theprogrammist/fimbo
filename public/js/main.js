@@ -423,7 +423,7 @@ $(function () {
       $active = typeof(e) !== 'undefined' ? $(e.target) : $('div.js-read-lection-slider .owl-dot.active');
 
       $active.find('a').text('Страница ' + $active.find('a').text());
-    }, 50);
+    }, 350);
   };
 
   //renuumerate();
