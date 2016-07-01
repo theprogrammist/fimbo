@@ -148,7 +148,7 @@
     @if(Request::segment(2)==='lection' && (Request::segment(3)==='new' || ($page->id > 0 && $page->parent === null)))
             @if(!(Request::segment(3)==='new'))
                 <a class="btn btn-info" title="добавить новую страницу в эту лекцию"
-                   href="{{ url('admin/lection/newpage/' . $page->id) }}">добавить в лекцию страницу</a>
+                   href="{{ url('admin/lection/newpage/' . $page->id) }}">Добавить страницу</a>
             @endif
         </div>
     @endif
