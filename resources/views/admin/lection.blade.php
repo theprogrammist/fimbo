@@ -1,10 +1,11 @@
 @extends('layouts.admin.main')
 
 @section('child-selector')
-    <div class="col-sm-11 {{ $errors->has('parent_id') ? ' has-error' : '' }}" style="margin-top: -20px;">
-        <label>Страницы</label>
-        <select data-name="parent_id"></select>
-
+    <div class="col-sm9 {{ $errors->has('parent_id') ? ' has-error' : '' }}">
+        <label class="col-sm-3 control-label text-right">Страницы</label>
+        <div class="col-sm-5">
+        <select data-name="parent_id" class="form-control" style="height: 34px"></select>
+        </div>
         @if ($errors->has('parent_id'))
             <span class="help-block">
                 <strong>{{ $errors->first('parent_id') }}</strong>
@@ -20,8 +21,9 @@
             }
         }
     </script>
-    <a class="col-sm-1 btn btn-info" title="перейти к редактированию страницы" onclick="pageEdit()" style="margin-top: 5px;">&gt;&gt;</a>
+    <a class="col-sm-1 btn btn-info" title="перейти к редактированию страницы" onclick="pageEdit()" style="margin-top: -5px;">&gt;&gt;</a>
     <style>
+
         .select2-chosen span[class*="icon-"] {
             vertical-align: sub;
             padding-right: 5px;
@@ -78,78 +80,32 @@
 
     @else
 
-        <div class="lection-fields" style="margin: 2px -30px 50px -15px; padding-bottom: 35px;">
+        <div class="lection-fields col-sm-9">
 
-            <?php $name = 'course'; $caption = 'Предмет'; ?>
-            <div class="{{ $errors->has($name) ? ' has-error' : '' }}">
-                <label class="col-sm-1 control-label text-right">
-                    {{ $caption  }}
-                </label>
+            @include('admin.block.plain-text', ['name' =>'course', 'caption' => 'Предмет', 'inputText' => 'true'])
+            @include('admin.block.plain-text', ['name' =>'number', 'caption' => 'Номер', 'inputText' => 'true'])
 
-                <div class="col-sm-4">
-                    <input type="text" name="{{$name}}" class="form-control"
-                           value="@if(!old($name)){{$page->$name}}@endif{{ old($name) }}"/>
+
+
+                @if(false && !(Request::segment(3)==='new'))
+                <div class="col-sm-9 form-group">
+                   @yield('child-selector')
                 </div>
-                @if ($errors->has($name))
-                    <span class="help-block">
-                        <strong>{{ $errors->first($name) }}</strong>
-                    </span>
                 @endif
-            </div>
-
-            <?php $name = 'number'; $caption = 'Номер'; ?>
-            <div class="{{ $errors->has($name) ? ' has-error' : '' }}">
-                <label class="col-sm-1 control-label text-right">
-                    {{ $caption  }}
-                </label>
-
-                <div class="col-sm-1">
-                    <input type="text" name="{{$name}}" class="form-control"
-                           value="@if(!old($name)){{$page->$name}}@endif{{ old($name) }}"/>
-                </div>
-                @if ($errors->has($name))
-                    <span class="help-block">
-                        <strong>{{ $errors->first($name) }}</strong>
-                    </span>
-                @endif
-            </div>
 
 
-            <div class="col-sm-5" style="height:36px;">
-                @if(!(Request::segment(3)==='new'))
-                    @yield('child-selector')
-                    <a class="btn btn-info" title="добавить новую страницу в эту лекцию" style="margin-left: 15px;"
-                       href="{{ url('admin/lection/newpage/' . $page->id) }}">добавить</a>
-                @endif
-            </div>
+            @include('admin.block.plain-text', ['name' =>'title', 'caption' => 'Название', 'inputText' => 'true'])
 
-
-            <?php $name = 'title'; $caption = 'Название'; ?>
-            <div class="{{ $errors->has($name) ? ' has-error' : '' }}">
-                <label class="col-sm-1 control-label text-right">
-                    {{ $caption  }}
-                </label>
-
-                <div class="col-sm-4">
-                    <input type="text" name="{{$name}}" class="form-control"
-                           value="@if(!old($name)){{$page->$name}}@endif{{ old($name) }}"/>
-                </div>
-                @if ($errors->has($name))
-                    <span class="help-block">
-                        <strong>{{ $errors->first($name) }}</strong>
-                    </span>
-                @endif
-            </div>
 
 
             <?php $name = 'difficulty'; $caption = 'Сложность'; ?>
-            <div class="{{ $errors->has($name) ? ' has-error' : '' }}">
-                <label class="col-sm-1 control-label text-right">
-                    {{ $caption  }}
-                </label>
+            <div class="col-sm-9 form-group">
+            <label class="col-sm-3 control-label text-right">
+                {{ $caption  }}
+            </label>
 
-                <div class="col-sm-1">
-                    <select class="form-control" name="{{$name}}" style="padding-left: 2px;padding-right: 0;width: 89px;">
+            <div class="col-sm-6">
+                    <select class="form-control" name="{{$name}}">
                         <option value="1" <?= (empty(old($name)) ? $page->$name : old($name)) == 1 ? 'selected' : '' ?>>
                             {{ App\Page::$difficultyNames[1] }}
                         </option>
@@ -170,6 +126,7 @@
                     </span>
                 @endif
             </div>
+            @include('admin.block.plain-text', ['name' =>'content', 'caption' => 'Описание'])
         </div>
 
     @endif

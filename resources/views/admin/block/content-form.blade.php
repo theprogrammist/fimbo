@@ -117,6 +117,9 @@
     </div>
 @endif
 @endif
+    @if(Request::segment(2)==='lection' && (Request::segment(3)==='new' || ($page->id > 0 && $page->parent === null)))
+        <div class="col-sm-9 form-group">
+    @else
     <div class="row">
         <div class="form-group  {{ $errors->has('content') ? ' has-error' : '' }}">
                 <textarea name='content' class="form-control" rows="20">@if(!old('content')){!! $page->content !!}@endif{!! old('content') !!}</textarea>
@@ -128,6 +131,9 @@
             @endif
         </div>
     </div>
+    @endif
+
+
 
     <input type="submit" name='publish' class="btn btn-success" value="Сохранить"/>
     @if (Request::segment(2)==='lection' && is_numeric(Request::segment(3)))
@@ -136,5 +142,14 @@
     @elseif(Request::segment(2)==='lection' && Request::segment(3)==='newpage')
     @else
         <a href="{{  url(Request::url() . '/delete/'.$page->id.'?_token='.csrf_token()) }}" class="btn btn-danger">Удалить</a>
+    @endif
+
+
+    @if(Request::segment(2)==='lection' && (Request::segment(3)==='new' || ($page->id > 0 && $page->parent === null)))
+            @if(!(Request::segment(3)==='new'))
+                <a class="btn btn-info" title="добавить новую страницу в эту лекцию"
+                   href="{{ url('admin/lection/newpage/' . $page->id) }}">добавить в лекцию страницу</a>
+            @endif
+        </div>
     @endif
 </form>
