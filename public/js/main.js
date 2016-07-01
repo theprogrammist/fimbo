@@ -436,6 +436,7 @@ window.setOnclick = function() {
     var href = $(el.target).attr('href') || $(el.target).find('a').attr('href');
     //window.location.href = href;
     window.history.pushState({}, "", href);
+    $('.read-comics.read-comics_lection')[0].scrollIntoView();
   });
 
   $('.js-comics-close').click(function(){
