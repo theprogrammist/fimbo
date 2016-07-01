@@ -423,6 +423,8 @@ $(function () {
       $active = typeof(e) !== 'undefined' ? $(e.target) : $('div.js-read-lection-slider .owl-dot.active');
 
       $active.find('a').text('Страница ' + $active.find('a').text());
+
+      setTimeout(function(){$('.owl-item:not(.cloned) > div.item').hide();setTimeout(function(){$('.owl-item:not(.cloned) > div.item').show();},150)},150);
     }, 350);
   };
 
