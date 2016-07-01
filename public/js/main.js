@@ -405,8 +405,9 @@ $(function () {
     animateIn:true,
     lazyLoad:true,
   });
+    window.setPageSelected();
   },50);
-  window.setPageSelected();
+
 });
 
 $(function () {
