@@ -105,7 +105,7 @@
                             {{ $caption  }}
                         </label>
                         <input type="text" name="{{$name}}" class="form-control"  style="width: 100px;display: inline-block;"
-                               value="@if(!old($name)){{$page->$name}}@endif{{ old($name) }}"/>
+                               value="@if(!old($name)){{$page->$name}}@endif{{ old($name) }}<?php if(empty(old($name)) && empty($page->$name)) echo App\Page::whereParentId($id)->max('number')+1;?>"/>
                     </div>
                     @if ($errors->has($name))
                         <span class="help-block">
@@ -144,12 +144,11 @@
         <a href="{{  url(Request::url() . '/delete/'.$page->id.'?_token='.csrf_token()) }}" class="btn btn-danger">Удалить</a>
     @endif
 
-
+    @if(Request::segment(2)==='lection' && (!(Request::segment(3)==='new') && !(Request::segment(3)==='newpage') ))
+        <a class="btn btn-info" title="добавить новую страницу в эту лекцию"
+           href="{{ url('admin/lection/newpage/' . (($page->id > 0 && $page->parent === null) ? $page->id : $page->parent->id)) }}">Добавить страницу</a>
+    @endif
     @if(Request::segment(2)==='lection' && (Request::segment(3)==='new' || ($page->id > 0 && $page->parent === null)))
-            @if(!(Request::segment(3)==='new'))
-                <a class="btn btn-info" title="добавить новую страницу в эту лекцию"
-                   href="{{ url('admin/lection/newpage/' . $page->id) }}">Добавить страницу</a>
-            @endif
         </div>
     @endif
 </form>

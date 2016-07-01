@@ -12,9 +12,9 @@
             <?php $i = 0;?>
             @foreach(App\Page::whereType('lection')->whereParentId(null)->distinct()->get(['course']) as $course)
             <?php $i++;?>
-            <div class="dropdown-tab js-droptab dropdown-tab_{{ Array('econom','mat','erud')[$i] }}"><a href="javascript:void(0);" class="dropdown-tab__link js-droptab-link"> {{ $course->course }}</a>
+            <div class="dropdown-tab js-droptab dropdown-tab_{{ Array('econom','mat','erud')[$i%3] }}"><a href="javascript:void(0);" class="dropdown-tab__link js-droptab-link"> {{ $course->course }}</a>
                 <div class="dropdown-tab__content">
-                    <div class="slider-five slider-five_learn slider-five_learn_{{ Array('econom','mat','erud')[$i] }}">
+                    <div class="slider-five slider-five_learn slider-five_learn_{{ Array('econom','mat','erud')[$i%3] }}">
                         <div class="js-slider-five">
 
                             @include('block.lection-slider',['courseName' => $course->course])
@@ -24,7 +24,11 @@
                 </div>
             </div>
             @endforeach
-
+<script>
+    $(function(){
+        $('.js-droptab-link').trigger('click');
+    });
+</script>
         </div>
     </div>
 @yield('lections')
