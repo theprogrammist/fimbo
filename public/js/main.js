@@ -405,31 +405,43 @@ $(function () {
     animateIn:true,
     lazyLoad:true,
   });
-    window.setPageSelected();
+    if('setPageSelected' in window) window.setPageSelected();
+    window.renuumerate();
+    window.setOnclick()
+    window.startReferrer = document.referrer;
   },50);
 
 });
 
 $(function () {
-  function renuumerate(e) {
+  window.renuumerate = function (e) {
     setTimeout(function (e) {
       $('.owl-item:not(.cloned) > div.item').each(function (i, el) {
-        $('div.js-read-lection-slider .owl-dot').eq(i).html(('<a style="position:relative;z-index:1000" href="/lection/' + $('#lectionId').val() +'/' + $(el).attr('data-number') + '">' + $(el).attr('data-number') + '</a>' || ''));
+        $('div.js-read-lection-slider .owl-dot').eq(i).html(('<a style="position:relative;z-index:1000" href="/lection/' + $('#lectionId').val() + '/' + $(el).attr('data-number') + '">' + $(el).attr('data-number') + '</a>' || ''));
       });
 
       $active = typeof(e) !== 'undefined' ? $(e.target) : $('div.js-read-lection-slider .owl-dot.active');
 
       $active.find('a').text('Страница ' + $active.find('a').text());
     }, 50);
-  }
+  };
 
-  renuumerate();
-
+  //renuumerate();
+window.setOnclick = function() {
   $('div.js-read-lection-slider .owl-dot').click(function (el) {
     renuumerate(el)
     /* in case mishit within a and is container */
     var href = $(el.target).attr('href') || $(el.target).find('a').attr('href');
     //window.location.href = href;
-    window.history.pushState({},"", href);
+    window.history.pushState({}, "", href);
   });
+
+  $('.js-comics-close').click(function(){
+    if(window.startReferrer.replace(/\/+$/,'') == (window.location.protocol + '//' + window.location.host)) {
+      window.location.href = window.location.protocol + '//' + window.location.host;
+    } else {
+      window.location.href = window.location.href + '/../../';
+    }
+  });
+};
 });
