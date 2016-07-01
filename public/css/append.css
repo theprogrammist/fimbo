@@ -42,3 +42,71 @@ div.has-error {
     font-weight: 500;
     margin-bottom: 10px;
 }
+.owl-item div.item.text{
+    font-size: 16px;
+    background-color: white;
+    padding: 72px;
+}
+.owl-item div.item.text p{
+    text-indent: 50px;
+    padding-bottom: 5px;
+    line-height: 1.2;
+}
+.owl-item div.item.text p strong{
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+.owl-item div.item.text h1 {
+    font-size: 25px;
+    font-variant: all-small-caps;
+    text-transform: uppercase;
+    font-weight: 500;
+    color:deepskyblue;
+    padding-bottom: 14px;
+}
+.owl-item div.item.text h2 strong {
+    font-weight: 900;
+    font-size: 35px;
+}
+.owl-item div.item.text h2 {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color:#bc2925;
+    line-height: 1.4;
+}
+.owl-item div.item.text h3 {
+    color:deepskyblue;
+    font-size: 25px;
+    text-transform: uppercase;
+    padding-top: 25px;
+    padding-bottom: 15px;
+
+}
+.owl-item div.item.text h4 {
+    color:#bc2925;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+.owl-item div.item.text table td {
+    padding: 5px;
+    border: 1px solid lightsteelblue;
+}
+.owl-item div.item.text blockquote em {
+    color:#bc2925;
+}
+.owl-item div.item.text blockquote {
+    display:inline-block;
+    position: relative;
+    right: 0;
+    float: right;
+    width: 220px;
+    margin: 0 0 5px 25px;
+    font-size: 20px;
+    letter-spacing: 2px;
+
+}

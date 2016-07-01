@@ -15,7 +15,7 @@
 
                 @foreach($lection->children as $page)
                 <div class="item" data-number="{{ $page->number }}">
-                    <div class="item text" style="background-color: white; padding: 25px;">
+                    <div class="item text">
                         {!! $page->content !!}
                     </div>
                 </div>

@@ -34,7 +34,7 @@ class LectionController extends Controller
         $validator = Validator::make(array_merge($request->all()),
             [
                 //'title' => 'required|max:1024',
-                'content' => 'max:10000',
+                'content' => 'max:15000',
             ]
             + ($isLectionPage ? [] : [ 'title' => 'required|max:1024' ])
         );

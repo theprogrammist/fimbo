@@ -101,7 +101,7 @@ class AdminController extends Controller
         $validator = Validator::make(array_merge(['name' => $name], $request->all()),
             [
                 'title' => 'required|max:1024',
-                'content' => 'max:10000',
+                'content' => 'max:15000',
 
             ]
             + (empty($request->input('page_id')) ? ['name' => 'required|unique:pages'] : [])
