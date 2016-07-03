@@ -60,6 +60,10 @@ Route::group(['prefix' => 'admin'], function($router)
     Route::post('/lection/newpage/{id}/save', ['uses' => 'Admin\LectionController@save']);
     Route::post('/lection/{id}/save', ['uses' => 'Admin\LectionController@save']);
     Route::get('/lection/{id}/delete', ['uses' => 'Admin\LectionController@delete']);
+
+    Route::get('/course/{id}', ['uses' => 'Admin\CourseController@show']);
+    Route::post('/course/{id}/save', ['uses' => 'Admin\CourseController@save']);
+    Route::get('/course/{id}/delete', ['uses' => 'Admin\CourseController@delete']);
 });
 
 //http://fimbo/register/verify/pIQjLoGe86JRp5nBgRNEiQMVhnLwJCaeH2Pe9Uq4FBGr4IqVHEnAMuYRcziW

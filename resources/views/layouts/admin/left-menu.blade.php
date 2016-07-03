@@ -16,6 +16,21 @@
             <li class="<?=Request::segment(3)==='agreement' ? 'active':''?>"><a href="{{ route('staticContent', ['name'=>'agreement']) }}">Пользовательское соглашение</a></li>
         </ul>
     </li>
+    <li class="course <?=Request::segment(2)==='course' ? 'active':''?>">
+        <a href="{{ url('admin/course/new') }}" data-toggle="collapse" data-target="#courses">
+            Предметы<span style="display: inline-block;float: right;">+</span>
+        </a>
+        @foreach(App\Course::all() as $cs)
+            <ul id="courses" class="nav list-group-submenu collapse <?=Request::segment(2)==='course' ? 'in':''?>">
+                <li class="<?=Request::segment(3) == $cs->id ? 'active':''?>">
+                    <a href="{{ url('admin/course/' . $cs->id) }}">
+                        {{$cs->title}}
+                    </a>
+                </li>
+            </ul>
+        @endforeach
+    </li>
+
     <li class="lections <?=Request::segment(2)==='lection' ? 'active':''?>">
         <a href="{{ url('admin/lection/new') }}">
             Лекции<span style="display: inline-block;float: right;">+</span>
