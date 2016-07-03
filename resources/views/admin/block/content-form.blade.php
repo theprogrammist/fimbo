@@ -78,7 +78,7 @@
 
 @if(!($page->type == 'lection') || $page->parent)
 @if(!(Request::segment(2)==='lection' && Request::segment(3)==='new'))
-    <div class="row" style="height: 32px;">
+    <div class="row" style="height: 32px; padding-bottom: 5px;">
         @if (trim($__env->yieldContent('parent-selector')))
             @yield('parent-selector')
             <?php $width = 'col-sm-8 ';?>
@@ -86,7 +86,7 @@
 
         <div class="{{ $width or '' }}form-group <?=(Request::segment(2)==='lection')?' col-sm-11 ':''?> {{ $errors->has('title') ? ' has-error' : '' }}"
              style="padding-right: 0px;">
-            @if(!Request::segment(2)==='lection')
+            @if(!(Request::segment(2)==='lection'))
                 <input required="required" placeholder="Заголовок страницы (title)" type="text" name="title"
                        class="form-control" value="@if(!old('title')){{$page->title}}@endif{{ old('title') }}"/>
                 @if ($errors->has('title'))
