@@ -10,14 +10,14 @@
         <div class="decided">
             <h2 class="h2 decided__h2 decided__h2_nobg">Учись</h2>
             <?php $i = 0;?>
-            @foreach(App\Page::whereType('lection')->whereParentId(null)->distinct()->get(['course']) as $course)
-            <?php $i++;?>
-            <div class="dropdown-tab js-droptab dropdown-tab_{{ Array('econom','mat','erud')[$i%3] }}"><a href="javascript:void(0);" class="dropdown-tab__link js-droptab-link"> {{ $course->course }}</a>
+            @foreach(App\Course::all() as $course)
+            <?php if($course->lections->count() == 0) continue;?>
+            <div class="dropdown-tab js-droptab dropdown-tab_{{ $course->color }}"><a href="javascript:void(0);" class="dropdown-tab__link js-droptab-link"> {{ $course->title }}</a>
                 <div class="dropdown-tab__content">
-                    <div class="slider-five slider-five_learn slider-five_learn_{{ Array('econom','mat','erud')[$i%3] }}">
+                    <div class="slider-five slider-five_learn slider-five_learn_{{ $course->color }}">
                         <div class="js-slider-five">
 
-                            @include('block.lection-slider',['courseName' => $course->course])
+                            @include('block.lection-slider',['course' => $course])
 
                         </div>
                     </div>

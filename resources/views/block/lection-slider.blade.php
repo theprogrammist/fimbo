@@ -1,4 +1,5 @@
-@foreach(App\Page::whereType('lection')->whereParentId(null)->whereCourse($courseName)->get() as $lct)
+@foreach($course->lections as $lct)
+    <?php $i++;?>
     <div class="slider__item">
         <div class="slider__item-block">
             <div class="slider__item-image">
@@ -11,7 +12,7 @@
                 </div>
             </a>
 
-            <div class="slider__item-level slider__item-level_<?=array('green', 'yellow', 'red')[rand(0, 2)]?>">
+            <div class="slider__item-level slider__item-level_<?=array('green', 'yellow', 'red')[$i%3]?>">
                 {{ (empty($lct->difficulty))?App\Page::$difficultyNames[1] : App\Page::$difficultyNames[$lct->difficulty] }}</div>
         </div>
         <div class="slider__item-text">

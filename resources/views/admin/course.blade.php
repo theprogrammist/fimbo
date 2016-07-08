@@ -51,6 +51,38 @@
     @include('admin.block.plain-text', ['page' => $course, 'name' =>'title', 'caption' => 'Название', 'inputText' => 'true'])
     @include('admin.block.plain-text', ['page' => $course, 'name' =>'description', 'caption' => 'Описание'])
 
+    <?php $name = 'color'; $caption = 'цветовое кодирование предмета'; ?>
+    <div class="col-sm-9 form-group">
+        <label class="col-sm-3 control-label text-right">
+            {{ $caption  }}
+        </label>
+
+        <div class="col-sm-6">
+            <select class="form-control" name="{{$name}}">
+                @foreach(App\Course::$colors as $color => $title)
+                    <option data-color="{{ $color }}" class="{{ $color }}Option" value="{{ $color }}"
+                        <?= (empty(old($name)) ? $course->$name : old($name)) == $color ? 'selected' : '' ?>>
+                        {{ $title }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        @if ($errors->has($name))
+            <span class="help-block">
+                        <strong>{{ $errors->first($name) }}</strong>
+                    </span>
+        @endif
+    </div>
+    <script>
+        function setSelectColor() {
+            $("select[name='{{ $name }}']").removeClass('redOption greenOption blueOption purpleOption orangeOption yellowOption');
+            $("select[name='{{ $name }}']").addClass($("select[name='{{ $name }}'] option:selected").attr('data-color') + 'Option');
+        }
+        $(function(){
+            setSelectColor();
+            $("select[name='{{ $name }}']").change(function(){setSelectColor();});
+        });
+    </script>
 
     <div class="form-group col-sm-9">
         {!! Form::submit('Сохранить', ['class' => 'btn btn-success col-sm-offset-1']) !!}

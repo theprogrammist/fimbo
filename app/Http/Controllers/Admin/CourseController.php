@@ -28,7 +28,7 @@ class CourseController extends Controller
     {
         $validator = Validator::make(array_merge($request->all()),
             [
-                'title' => 'required|max:1024|unique:courses',
+                'title' => 'required|max:1024' . (($id == 'new') ? '|unique:courses' : ''),
                 'description' => 'max:15000',
             ]
         );
@@ -44,12 +44,14 @@ class CourseController extends Controller
 
             $course->title = $request->input('title');
             $course->description = $request->input('description');
+            $course->color = $request->input('color');
 
             $course->save();
         } else {
             $course = Course::create([
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
+                'color' => $request->input('color'),
             ]);
         }
 

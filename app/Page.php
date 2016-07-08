@@ -30,7 +30,7 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'title', 'content', 'parent_id', 'number', 'difficulty', 'course'
+        'name', 'type', 'title', 'content', 'parent_id', 'number', 'difficulty', 'course_id'
     ];
 
     public function parent()
@@ -46,5 +46,10 @@ class Page extends Model
     public static function getTree()
     {
         $zeroLevel = self::whereParentId(null)->get();
+    }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Course');
     }
 }

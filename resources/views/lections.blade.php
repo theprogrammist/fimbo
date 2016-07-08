@@ -9,7 +9,7 @@
     <div class="read-bg js-read-comics read-bg_comics">
         <div class="read-comics read-comics_lection">
             <a href="javascript:void(0);" class="popup__close js-comics-close"></a>
-            <div class="read-task__title">{{ $lection->course }}</div>
+            <div class="read-task__title">{{ $lection->course->title }}</div>
             <div class="read-task__dop-title">Лекция {{ $lection->number }} из {{ App\Page::whereType('lection')->whereParentId(null)->count() }}. {{ $lection->title }}</div>
             <div class="js-read-lection-slider">
 

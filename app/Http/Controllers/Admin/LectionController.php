@@ -56,7 +56,7 @@ class LectionController extends Controller
             }
             $page->number = $request->input('number');
             $page->difficulty = $request->input('difficulty');
-            $page->course = trim($request->input('course'));
+            $page->course_id = trim($request->input('course_id'));
 
             $page->save();
         } else {
@@ -66,7 +66,7 @@ class LectionController extends Controller
                 'type' => 'lection',
                 'number' => $request->input('number'),
                 'difficulty' => $request->input('difficulty'),
-                'course' => trim($request->input('course')),
+                'course_id' => trim($request->input('course_id')),
                 'parent_id' => $request->input('parent_id'),
             ]);
         }
