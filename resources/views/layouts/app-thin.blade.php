@@ -68,7 +68,7 @@
                 </div>
             </div>
         @endif
-        @if ( $message|| ($errors->has('email')) || ($errors->has('password')) )
+        @if ( $message|| ($errors->has('email')) || ($errors->has('password')) || Session::get('loginRedirect'))
             <script language="JavaScript">
                 $('body').css({'overflow':'hidden'});
                 $('.js-popup-wrap, .js-popup-enter').fadeIn();

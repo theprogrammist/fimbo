@@ -79,4 +79,11 @@ Route::get('/register/success', function () {
 
 Route::auth();
 
+Route::get('/login', function() {
+    return redirect('/')
+        ->with(
+            Auth::guest() ? ['loginRedirect' => true] : []
+        );
+});
+
 //Route::get('/home', 'HomeController@index');
