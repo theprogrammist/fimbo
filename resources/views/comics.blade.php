@@ -1,26 +1,17 @@
-@extends('learn')
-
-@section('html-page-title')
-    FIMBO.RU - УЧИСЬ
-@overwrite
-
-@section('lections')
-    @if($lection->type == 'comics')
-        @include('comics')
-    @else
     <div class="read-bg js-read-comics read-bg_comics">
-        <div class="read-comics read-comics_lection">
+        <div class="read-comics">
             <a href="javascript:void(0);" class="popup__close js-comics-close"></a>
             <div class="read-task__title">{{ $lection->course->title }}</div>
-            <div class="read-task__dop-title">Лекция {{ $lection->number }} из {{ App\Page::whereType('lection')->whereParentId(null)->count() }}. {{ $lection->title }}</div>
-            <div class="js-read-lection-slider">
+            <div class="read-task__dop-title">Лекция-комикс {{ $lection->number }} из {{ App\Page::whereType('comics')->whereParentId(null)->count() }}. {{ $lection->title }}</div>
+            <div class="js-read-comics-slider">
 
                 @foreach($lection->children as $page)
-                <div class="item" data-number="{{ $page->number }}">
-                    <div class="item text contentContainer">
-                        {!! $page->content !!}
+                    <div class="item" data-number="{{ $page->number }}">
+                        <img src="{{ url('images/' . $page->l_img) }}" alt="comics">
                     </div>
-                </div>
+                    <div class="item">
+                        <img src="{{ url('images/' . $page->r_img) }}" alt="comics">
+                    </div>
                 @endforeach
 <script>
     for(c in o = document.getElementsByClassName('contentContainer')) {
@@ -49,5 +40,3 @@ window.setPageSelected = function() {
     }
 };
 </script>
-    @endif
-@endsection

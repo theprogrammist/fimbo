@@ -6,7 +6,7 @@
 
     <div class="col-sm-6">
         @if(in_array($name,['youtubelink','learn','solve','use','earn']) || isset($inputText))
-            <input type="text" name="{{$name}}" class="form-control" value="@if(!old($name)){{$p->$name}}@endif{{ old($name) }}"/>
+            <input type="text" name="{{$name}}" class="form-control" value="@if(!old($name)){{$p->$name}}@endif{{ old($name) }}<?php if(empty(old($name)) && empty($page->$name) && isset($default)) echo $default;?>"/>
         @else
             <textarea name="{{$name}}" class="form-control">@if(!old($name)){{$p->$name}}@endif{{ old($name) }}</textarea>
         @endif

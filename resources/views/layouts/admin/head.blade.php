@@ -17,6 +17,7 @@
     <script src="<?=asset('js/libs/jquery.form.min.js')?>"></script>
     <script src="<?=asset('js/libs/select2-4.0.3/js/select2.full.min.js')?>"></script>
     <script src="<?=asset('js/libs/select2-4.0.3/js/i18n/ru.js')?>"></script>
+    <script src="<?=asset('js/admin.js')?>"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="<?=asset('css/ie10-viewport-bug-workaround.css')?>" rel="stylesheet">

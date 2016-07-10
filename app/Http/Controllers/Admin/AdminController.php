@@ -142,7 +142,7 @@ class AdminController extends Controller
      * @param $file Request->file object
      * @return string name of stored file
      */
-    private static function uploadFile($file)
+    public static function uploadFile($file)
     {
         $fileName = time() . str_random(10) . '.' .
             $file->getClientOriginalExtension();

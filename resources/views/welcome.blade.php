@@ -39,7 +39,18 @@
                 <div class="learn__block">
                     <div class="learn__block-left">
                         <div class="learn__block-text">
-                            <div class="learn__block-text-span">{!! $page->contentHash->learnbubble !!}</div>
+                            <div class="learn__block-text-span"style="height:96px"><div style="
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+"><div style="
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-right: 17px;
+    box-sizing: content-box;
+    cursor: pointer;
+">	{!! $page->contentHash->learnbubble !!}</div></div></div>
                         </div>
                     </div>
                     <div class="learn__block-right">
@@ -68,7 +79,18 @@
                 <div class="learn__block">
                     <div class="learn__block-left">
                         <div class="learn__block-text">
-                            <div class="learn__block-text-span">{!! $page->contentHash->solvebubble !!}</div>
+                            <div class="learn__block-text-span"style="height:96px"><div style="
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+"><div style="
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-right: 17px;
+    box-sizing: content-box;
+    cursor: pointer;
+">	{!! $page->contentHash->solvebubble !!}</div></div></div>
                         </div>
                     </div>
                     <div class="learn__block-right">

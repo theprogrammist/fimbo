@@ -633,7 +633,7 @@ body {
     width: 387px;
     height: 322px;
     background: url("../img/bg-text.png") 0 0 no-repeat;
-    padding: 70px 25px 0 65px;
+    padding: 70px 8px 0 65px;
     text-align: left;
     margin-left: -65px;
     max-width: 100%;
@@ -646,6 +646,9 @@ body {
     line-height: 24px;
     max-height: 96px;
     overflow: hidden;
+}
+.learn__block-text-span:hover {
+    background-color: rgba(255,255,255,0.15);
 }
 
 .slider {

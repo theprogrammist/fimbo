@@ -7,7 +7,7 @@
             </div>
             <a href="{{ url('lection/') . '/' . $lct->id . '/'  }}">
                 <div class="slider__item-title">
-                    <div class="slider__item-lection">Лекция {{ $lct->number }}</div>
+                    <div class="slider__item-lection">Лекция<?=($lct->type=='comics') ? '-комикс' : ''?> {{ $lct->number }}</div>
                     <div class="slider__item-span">{{$lct->title}}</div>
                 </div>
             </a>

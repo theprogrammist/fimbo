@@ -30,7 +30,7 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'title', 'content', 'parent_id', 'number', 'difficulty', 'course_id'
+        'name', 'type', 'title', 'content', 'parent_id', 'number', 'difficulty', 'course_id', 'l_img', 'r_img'
     ];
 
     public function parent()

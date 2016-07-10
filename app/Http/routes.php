@@ -37,7 +37,7 @@ Route::get('/agreement', function () {
 
 Route::get('/lection/{lectionId}/{pageNum}', ['uses' => 'LectionController@show']);
 Route::get('/lection/{lectionId}/', function($lectionId) {
-    return redirect('/lection/'.$lectionId . '/1');
+    return redirect('/lection/'.$lectionId . '/'. ((App\Page::whereParentId($lectionId)->min('number')) ?: 1));
 });
 Route::get('/lection/', function() {
     return view('learn');
@@ -64,6 +64,14 @@ Route::group(['prefix' => 'admin'], function($router)
     Route::get('/course/{id}', ['uses' => 'Admin\CourseController@show']);
     Route::post('/course/{id}/save', ['uses' => 'Admin\CourseController@save']);
     Route::get('/course/{id}/delete', ['uses' => 'Admin\CourseController@delete']);
+
+    Route::get('/comics/{id}', ['uses' => 'Admin\ComicsController@show']);
+    Route::post('/comics/{id}/save', ['uses' => 'Admin\ComicsController@save']);
+    Route::get('/comics/{id}/delete', ['uses' => 'Admin\ComicsController@delete']);
+    Route::get('/comics/newpage/{id}', function ($id) {
+        return view('admin.comics', ['page' => new App\Page, 'id' => $id]);
+    });
+    Route::post('/comics/newpage/{id}/save', ['uses' => 'Admin\ComicsController@save']);
 });
 
 //http://fimbo/register/verify/pIQjLoGe86JRp5nBgRNEiQMVhnLwJCaeH2Pe9Uq4FBGr4IqVHEnAMuYRcziW
