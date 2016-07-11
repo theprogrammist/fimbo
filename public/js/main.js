@@ -414,20 +414,24 @@ $(function () {
   window.renuumerate = function (e) {
     setTimeout(function (e) {
       $('.owl-item:not(.cloned) > div.item').each(function (i, el) {
-        $('div.js-read-lection-slider .owl-dot').eq(i).html(('<a style="position:relative;z-index:1000" href="/lection/' + $('#lectionId').val() + '/' + $(el).attr('data-number') + '">' + $(el).attr('data-number') + '</a>' || ''));
+        $('div.js-read-lection-slider .owl-dot, div.js-read-comics-slider .owl-dot').eq(i).
+          html(('<a style="position:relative;z-index:1000" href="/lection/' + $('#lectionId').val() + '/' + $(el).attr('data-number') + '">' + $(el).attr('data-number') + '</a>' || ''));
       });
 
       $active = typeof(e) !== 'undefined' ? $(e.target) : $('div.js-read-lection-slider .owl-dot.active');
+      $active.find('a').html('<span style="padding-right: 10px;">Страница</span>' + $active.find('a').text());
 
+      $active = typeof(e) !== 'undefined' ? $(e.target) : $('div.js-read-comics-slider .owl-dot.active');
       $active.find('a').html('<span style="padding-right: 10px;">Страница</span>' + $active.find('a').text());
 
       //setTimeout(function(){$('.owl-item:not(.cloned) > div.item').hide();setTimeout(function(){$('.owl-item:not(.cloned) > div.item').show();},150)},150);
-    }, 50);
+    }, 5);
   };
 
   //renuumerate();
 window.setOnclick = function() {
-  $('div.js-read-lection-slider .owl-dot').click(function (el) {
+  $('div.js-read-lection-slider .owl-dot, div.js-read-comics-slider .owl-dot, div.js-read-comics-slider div.owl-next').click(function (el) {
+    el = el || $('div.js-read-comics-slider .owl-dot.active')[0];
     renuumerate(el)
     /* in case mishit within a and is container */
     var href = $(el.target).attr('href') || $(el.target).find('a').attr('href');
