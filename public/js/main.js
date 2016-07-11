@@ -430,14 +430,19 @@ $(function () {
 
   //renuumerate();
 window.setOnclick = function() {
-  $('div.js-read-lection-slider .owl-dot, div.js-read-comics-slider .owl-dot, div.js-read-comics-slider div.owl-next').click(function (el) {
-    el = el || $('div.js-read-comics-slider .owl-dot.active')[0];
+  $('div.js-read-lection-slider .owl-dot, div.js-read-comics-slider .owl-dot, div.js-read-comics-slider div.owl-next, div.js-read-comics-slider div.owl-prev').click(function (el) {
+    if(typeof $(el.target).attr('href') == "undefined") {
+      el = $('div.js-read-comics-slider .owl-dot.active').find('a')[0];
+      var target = el;
+    } else {
+      var target = el.target;
+    }
     renuumerate(el)
     /* in case mishit within a and is container */
-    var href = $(el.target).attr('href') || $(el.target).find('a').attr('href');
+    var href = $(target).attr('href') || $(target).find('a').attr('href');
     //window.location.href = href;
     window.history.pushState({}, "", href);
-    $('.read-comics.read-comics_lection')[0].scrollIntoView();
+    $('.read-comics')[0].scrollIntoView();
   });
 
   $('.js-comics-close').click(function(){
