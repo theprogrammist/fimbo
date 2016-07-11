@@ -5,7 +5,7 @@
             <div class="slider__item-image">
                 <img src="/img/slider-decide-img3.jpg" alt="slider-img" class="slider__item-img">
             </div>
-            <a href="{{ url('lection/') . '/' . $lct->id . '/'  }}">
+            <a href="javascript:void(0);" onclick="rememberVisitedPosition(this,'{{ url('lection/') . '/' . $lct->id . '/'  }}');">
                 <div class="slider__item-title">
                     <div class="slider__item-lection">Лекция<?=($lct->type=='comics') ? '-комикс' : ''?> {{ $lct->number }}</div>
                     <div class="slider__item-span">{{$lct->title}}</div>

@@ -453,4 +453,56 @@ window.setOnclick = function() {
     }
   });
 };
+
+  window.rememberVisitedPosition = function (el, href) {
+    $slider = $(el).parents('.js-slider-five');
+    $sliderIdx = $('.js-slider-five').index($slider);
+    $activeItem = $(el).parents('.slider__item');
+    $activeItemIdx = $slider.find('.slider__item').index($activeItem);
+
+    var jsSliderFivePositions = localStorage.getItem("jsSliderFivePositions") || '{}';
+    try {
+      jsSliderFivePositions = JSON.parse(jsSliderFivePositions)
+    } catch (e) {
+      ;
+    }
+
+    if(typeof jsSliderFivePositions !== "object") {
+      jsSliderFivePositions = {};
+    }
+
+    if(window.location.href.split('/').slice(-1) == 'lection') ++$sliderIdx;
+    jsSliderFivePositions[$sliderIdx] = $activeItemIdx;
+
+    localStorage.setItem("jsSliderFivePositions", JSON.stringify(jsSliderFivePositions));
+
+    window.location.href = href;
+  };
+
+  window.restorerVisitedPositions = function () {
+    if (jsSliderFivePositions = localStorage.getItem("jsSliderFivePositions")) {
+      try {
+        var jsSliderFivePositions = JSON.parse(jsSliderFivePositions)
+      } catch (e) {
+        ;
+      }
+      if(typeof jsSliderFivePositions == "object") {
+        for (s in jsSliderFivePositions) {
+          var slider = (window.location.href.split('/').slice(-1) == 'lection') ? (s - 1) : s;
+          var position = jsSliderFivePositions[s];
+          $slider = $('.js-slider-five').eq(slider)
+          if($slider.find('.slider__item').length > position) {
+            $('.js-slider-five').eq(slider).data('owl.carousel').to(position);
+          }
+        }
+      }
+    }
+  };
+  setTimeout(function(){
+    window.restorerVisitedPositions();
+  },50);
+
+  $('.popup-enter__button').click(function(){
+    localStorage.setItem("jsSliderFivePositions",'');
+  });
 });
