@@ -31,7 +31,7 @@
         @endforeach
     </li>
 
-    <li class="lections <?=Request::segment(2)==='lection' ? 'active':''?>">
+    <!--li class="lections <?=Request::segment(2)==='lection' ? 'active':''?>">
         <a href="{{ url('admin/lection/new') }}">
             Лекции<span style="display: inline-block;float: right;">+</span>
         </a>
@@ -78,11 +78,69 @@
                 </li>
             </ul>
         @endforeach
-    </li>
+    </li-->
 
 
 
 </ul>
+<div id="container" style="display: none">
+<ul     id="lections" style="    margin-left: -18px;">
+    <li>
+        <a href="{{ url('admin/lection/new') }}" class="addnew <?=Request::segment(2)==='lection' ? 'active':''?>">
+            Лекции
+        </a>
+        <ul>
+            @foreach(App\Page::whereType('lection')->whereParentId(null)->get() as $pg)
+            <li>
+                <a href="{{ url('admin/lection/' . $pg->id) }}" class="<?=Request::segment(3) == $pg->id ? 'active':''?>">
+                {{$pg->title}}
+                </a>
+                <ul>
+                    @foreach($pg->children as $chld)
+                    <li>
+                        <a href="{{ url('admin/lection/' . $chld->id) }}" class="<?=Request::segment(3) == $chld->id ? 'active':''?>">Страница&nbsp;{{$chld->number}}</a>
+                    </li>
+                    @endforeach
+                </ul>
+            </li>
+            @endforeach
+        </ul>
+    </li>
+</ul>
+<ul     id="comics" style="    margin-left: -18px; padding-top: 20px">
+    <li>
+        <a href="{{ url('admin/comics/new') }}" class="addnew <?=Request::segment(2)==='comics' ? 'active':''?>">
+            Лекции-Комиксы
+        </a>
+        <ul>
+            @foreach(App\Page::whereType('comics')->whereParentId(null)->get() as $pg)
+            <li>
+                <a href="{{ url('admin/comics/' . $pg->id) }}" class="<?=Request::segment(3) == $pg->id ? 'active':''?>">
+                {{$pg->title}}
+                </a>
+                <ul>
+                    @foreach($pg->children as $chld)
+                    <li>
+                        <a href="{{ url('admin/comics/' . $chld->id) }}" class="<?=Request::segment(3) == $chld->id ? 'active':''?>">Страница&nbsp;{{$chld->number}}</a>
+                    </li>
+                    @endforeach
+                </ul>
+            </li>
+            @endforeach
+        </ul>
+    </li>
+</ul>
+</div>
+<script>
+    $(function(){
+        $('#comics, #lections').treed();
 
+        //$('#comics').find('li > a.active').parents('li.branch').find('.glyphicon-plus-sign').click();
+        $('#comics, #lections').find('li > a.active').parents('li.branch').each(function (n, el) {
+            $(el).children('.glyphicon-plus-sign').first().click();
+        })
 
+        $("#container").show();
+    });
+</script>
 @endsection
