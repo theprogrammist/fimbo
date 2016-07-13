@@ -242,8 +242,7 @@ div.has-error {
 
 .js-comics-close.mobile {
     display: none;
-    -webkit-filter: invert(1);
-    filter: invert(1);
+    background-position: -65px -326px;
 }
 
 .read-task__title.mobile, .read-task__dop-title.mobile {
