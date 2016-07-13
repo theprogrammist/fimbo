@@ -388,17 +388,18 @@ $(function () {
 
 
   // slider lection
-  setTimeout(function(){
-  $('.js-read-lection-slider').owlCarousel({
+  var sliderLectionsSettings = window.sliderLectionsSettings || {
     items: 1,
-    loop:true,
-    nav:false,
-    dots: true,
-    autoplay:false,
-    autoHeight:true,
-    mouseDrag: false,
-    touchDrag: false,
-  });
+        loop:true,
+      nav:false,
+      dots: true,
+      autoplay:false,
+      autoHeight:true,
+      mouseDrag: false,
+      touchDrag: false,
+  }
+  setTimeout(function(){
+  $('.js-read-lection-slider').owlCarousel(sliderLectionsSettings);
     if('setPageSelected' in window) window.setPageSelected();
     window.renuumerate();
     window.setOnclick()
@@ -441,6 +442,7 @@ window.setOnclick = function() {
     window.history.pushState({}, "", href);
     $('.read-comics')[0].scrollIntoView();
   });
+};
 
   $('.js-comics-close').on('click tap', function(){
     if(window.startReferrer.replace(/\/+$/,'') == (window.location.protocol + '//' + window.location.host)) {
@@ -449,7 +451,6 @@ window.setOnclick = function() {
       window.location.href = window.location.href + '/../../';
     }
   });
-};
 
   window.rememberVisitedPosition = function (el, href) {
     $slider = $(el).parents('.js-slider-five');
