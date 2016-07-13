@@ -1,6 +1,7 @@
 <?php
 $agent = new Jenssegers\Agent\Agent();
 $mobile = $agent->isMobile();
+$mobile = true;
 ?>
 
 @if($mobile)
@@ -10,7 +11,7 @@ $mobile = $agent->isMobile();
             items: 2,
             margin: 10,
             slideBy: 2,
-            loop:true,
+            loop:false,
             nav:false,
             dots: false,
             autoplay:false,
@@ -40,7 +41,7 @@ $(function(){
 @endif
 
     <div class="read-bg js-read-comics read-bg_comics">
-        <div class="read-comics">
+        <div class="read-comics<?=$mobile?' mobile':''?>">
             <a href="javascript:void(0);" class="popup__close js-comics-close<?=$mobile?' mobile':''?>"></a>
             <div class="read-task__title<?=$mobile?' mobile':''?>">{{ $lection->course->title }}</div>
             <div class="read-task__dop-title<?=$mobile?' mobile':''?>">Лекция-комикс {{ $lection->number }} из {{ App\Page::whereType('comics')->whereParentId(null)->count() }}. {{ $lection->title }}</div>

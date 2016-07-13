@@ -247,3 +247,8 @@ div.has-error {
 .read-task__title.mobile, .read-task__dop-title.mobile {
     display: none;
 }
+
+.read-comics.mobile {
+    padding: 0 5px;
+    margin: 2px auto;
+}
