@@ -242,6 +242,8 @@ div.has-error {
 
 .js-comics-close.mobile {
     display: none;
+    -webkit-filter: invert(1);
+    filter: invert(1);
 }
 
 .read-task__title.mobile, .read-task__dop-title.mobile {
@@ -249,6 +251,6 @@ div.has-error {
 }
 
 .read-comics.mobile {
-    padding: 0 5px;
-    margin: 2px auto;
+    padding: 0 1px;
+    margin: 1px auto;
 }
