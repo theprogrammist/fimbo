@@ -242,7 +242,8 @@ div.has-error {
 
 .js-comics-close.mobile {
     display: none;
-    background-position: -65px -326px;
+    background-position: -105px -491px;
+    background-size: 608px;
     z-index: 1000;
 }
 
