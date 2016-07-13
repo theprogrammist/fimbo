@@ -243,6 +243,7 @@ div.has-error {
 .js-comics-close.mobile {
     display: none;
     background-position: -65px -326px;
+    z-index: 1000;
 }
 
 .read-task__title.mobile, .read-task__dop-title.mobile {

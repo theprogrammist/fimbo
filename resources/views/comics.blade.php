@@ -1,7 +1,6 @@
 <?php
 $agent = new Jenssegers\Agent\Agent();
 $mobile = $agent->isMobile();
-$mobile = true;
 ?>
 
 @if($mobile)
