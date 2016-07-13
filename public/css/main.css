@@ -4336,7 +4336,7 @@ label.error {
     height: auto;
 }
 
-.read-comics_lection .disabled {
+.read-comics_lection .disabled, .read-comics .disabled {
     display: none;
 }
 

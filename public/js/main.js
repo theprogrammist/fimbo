@@ -361,33 +361,30 @@ $(function () {
   });
 
   // slider comics
-  $('.js-read-comics-slider').owlCarousel({
-    items: 2,
-    margin: 10,
-    slideBy: 2,
-    loop:true,
-    nav:true,
-    autoplay:false,
-    //dotsEach: true,
-    responsive:{
-      0:{
-          items:1,
-      },
-      600:{
-          items:2,
-      },
-      768:{
-          items:2,
-      },
-      1000:{
-          items:2,
-      }
-    }
-  });
-  $('.js-comics-close').click(function(){
-    $('.js-read-comics').fadeOut();
-    $('body').css({'overflow':'auto'});
-  });
+  var sliderComicsSettings = window.sliderComicsSettings || {
+        items: 2,
+        margin: 10,
+        slideBy: 2,
+        loop:true,
+        nav:true,
+        autoplay:false,
+        //dotsEach: true,
+        responsive:{
+          0:{
+            items:1,
+          },
+          600:{
+            items:2,
+          },
+          768:{
+            items:2,
+          },
+          1000:{
+            items:2,
+          }
+        }
+      };
+  $('.js-read-comics-slider').owlCarousel(sliderComicsSettings);
 
 
   // slider lection
@@ -445,7 +442,7 @@ window.setOnclick = function() {
     $('.read-comics')[0].scrollIntoView();
   });
 
-  $('.js-comics-close').click(function(){
+  $('.js-comics-close').on('click tap', function(){
     if(window.startReferrer.replace(/\/+$/,'') == (window.location.protocol + '//' + window.location.host)) {
       window.location.href = window.location.protocol + '//' + window.location.host;
     } else {

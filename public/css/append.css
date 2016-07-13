@@ -239,3 +239,11 @@ div.has-error {
     background: #F5FFB5;
 }
 
+
+.js-comics-close.mobile {
+    display: none;
+}
+
+.read-task__title.mobile, .read-task__dop-title.mobile {
+    display: none;
+}
