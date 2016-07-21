@@ -52,4 +52,9 @@ class Page extends Model
     {
         return $this->belongsTo('App\Course');
     }
+
+    public function problems()
+    {
+        return $this->belongsToMany('App\Problem', 'problem_lection', 'lection_id', 'problem_id');
+    }
 }

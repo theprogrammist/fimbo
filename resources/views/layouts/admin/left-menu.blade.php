@@ -31,55 +31,6 @@
         @endforeach
     </li>
 
-    <!--li class="lections <?=Request::segment(2)==='lection' ? 'active':''?>">
-        <a href="{{ url('admin/lection/new') }}">
-            Лекции<span style="display: inline-block;float: right;">+</span>
-        </a>
-        @foreach(App\Page::whereType('lection')->whereParentId(null)->get() as $pg)
-            <ul>
-                <li>
-                    <a href="{{ url('admin/lection/' . $pg->id) }}" class="<?=Request::segment(3) == $pg->id ? 'active':''?>">
-                        {{$pg->title}}
-
-                        @foreach($pg->children as $chld)
-                            <ul>
-                                <li>
-                                    <a href="{{ url('admin/lection/' . $chld->id) }}" class="<?=Request::segment(3) == $chld->id ? 'active':''?>">Страница&nbsp;{{$chld->number}}</a>
-                                </li>
-                            </ul>
-                        @endforeach
-
-                    </a>
-                </li>
-            </ul>
-        @endforeach
-    </li>
-
-
-    <li class="lections <?=Request::segment(2)==='comics' ? 'active':''?>">
-        <a href="{{ url('admin/comics/new') }}">
-            Лекции-Комиксы<span style="display: inline-block;float: right;">+</span>
-        </a>
-        @foreach(App\Page::whereType('comics')->whereParentId(null)->get() as $pg)
-            <ul>
-                <li>
-                    <a href="{{ url('admin/comics/' . $pg->id) }}" class="<?=Request::segment(3) == $pg->id ? 'active':''?>">
-                        {{$pg->title}}
-
-                        @foreach($pg->children as $chld)
-                            <ul>
-                                <li>
-                                    <a href="{{ url('admin/comics/' . $chld->id) }}" class="<?=Request::segment(3) == $chld->id ? 'active':''?>">Страница&nbsp;{{$chld->number}}</a>
-                                </li>
-                            </ul>
-                        @endforeach
-
-                    </a>
-                </li>
-            </ul>
-        @endforeach
-    </li-->
-
 
 
 </ul>
@@ -126,6 +77,29 @@
                     @endforeach
                 </ul>
             </li>
+            @endforeach
+        </ul>
+    </li>
+</ul>
+<ul     id="comics" style="    margin-left: -18px; padding-top: 20px">
+    <li>
+        <a href="{{ url('admin/problem/new') }}" class="addnew <?=Request::segment(2)==='problem' ? 'active':''?>">
+            Задачи
+        </a>
+        <ul>
+            @foreach(App\Course::all() as $c)
+                @if(count(App\Problem::whereCourseId($c->id)->get()) > 0)
+                    <li>
+                        {{$c->title}}
+                        <ul>
+                            @foreach(App\Problem::whereCourseId($c->id)->get() as $chld)
+                            <li>
+                                <a href="{{ url('admin/problem/' . $chld->id) }}" class="<?=Request::segment(3) == $chld->id ? 'active':''?>">{{$chld->title}}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
             @endforeach
         </ul>
     </li>

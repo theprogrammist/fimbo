@@ -65,6 +65,10 @@ Route::group(['prefix' => 'admin'], function($router)
     Route::post('/course/{id}/save', ['uses' => 'Admin\CourseController@save']);
     Route::get('/course/{id}/delete', ['uses' => 'Admin\CourseController@delete']);
 
+    Route::get('/problem/{id}', ['uses' => 'Admin\ProblemController@show']);
+    Route::post('/problem/{id}/save', ['uses' => 'Admin\ProblemController@save']);
+    Route::get('/problem/{id}/delete', ['uses' => 'Admin\ProblemController@delete']);
+
     Route::get('/comics/{id}', ['uses' => 'Admin\ComicsController@show']);
     Route::post('/comics/{id}/save', ['uses' => 'Admin\ComicsController@save']);
     Route::get('/comics/{id}/delete', ['uses' => 'Admin\ComicsController@delete']);

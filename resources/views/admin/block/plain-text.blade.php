@@ -4,7 +4,7 @@
         {{ $caption  }}
     </label>
 
-    <div class="col-sm-6">
+    <div class="col-sm-{{ isset($width) ? $width : 6 }}">
         @if(in_array($name,['youtubelink','learn','solve','use','earn']) || isset($inputText))
             <input type="text" name="{{$name}}" class="form-control" value="@if(!old($name)){{$p->$name}}@endif{{ old($name) }}<?php if(empty(old($name)) && empty($page->$name) && isset($default)) echo $default;?>"/>
         @else
