@@ -394,7 +394,7 @@ $(function () {
       nav:false,
       dots: true,
       autoplay:false,
-      autoHeight:true,
+      //autoHeight:true,
       mouseDrag: false,
       touchDrag: false,
   }

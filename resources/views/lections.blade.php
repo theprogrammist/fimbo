@@ -58,9 +58,6 @@
                                 } else {
                                     $('#item{{ $i }}').html(content);
                                 }
-                                if($('.owl-height').height() < 2) {
-                                    $('.owl-height').height($('#item{{ $i }}').height());
-                                }
                             });
 
                         </script>
