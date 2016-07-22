@@ -22,7 +22,7 @@ class ProblemController extends Controller
         if(!$problem){
             $problem = new Problem();
             $problem->question = json_encode([
-                'type' => '',
+                'type' => 'radio',
                 'radio' => [
                     'number' => -1,
                     'texts' => [''],
