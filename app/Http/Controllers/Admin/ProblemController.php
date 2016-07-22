@@ -19,9 +19,24 @@ class ProblemController extends Controller
     {
         $problem = Problem::find($id);
 
-        $problem = $problem ?: new Problem();
+        if(!$problem){
+            $problem = new Problem();
+            $problem->question = json_encode([
+                'type' => '',
+                'radio' => [
+                    'number' => -1,
+                    'texts' => [''],
+                ],
+                'checkbox' => [
+                    'numbers' => [],
+                    'texts' => [''],
+                ],
+                'single' => ''
+            ]);
+        }
 
-        return view('admin.problem', ['problem' => $problem]);
+        return view('admin.problem', ['problem' => $problem,
+            'question' => json_decode($problem->question)]);
     }
 
     public function save($id = null, Request $request)
@@ -45,12 +60,28 @@ class ProblemController extends Controller
             );
         }
 
+        //die(var_dump($request->has('single_quesiton'),$request->exists('single_quesiton')));
+        $question = [
+            'type' => $request->input('question_type'),
+            'radio' => [
+                'number' => $request->input('radio_question'),
+                'texts' => $request->input('radio_quesiton_text'),
+            ],
+            'checkbox' => [
+                'numbers' => $request->input('checkbox_question'),
+                'texts' => $request->input('checkbox_quesiton_text'),
+            ],
+            'single' => $request->input('single_quesiton')
+        ];
+
+
+
         if (!empty($request->input('problem_id'))) {
             $problem = Problem::find($request->input('problem_id'));
 
             $problem->title = $request->input('title');
             $problem->description = $request->input('description');
-            //$problem->question = $request->input('question');
+            $problem->question = json_encode($question);
             $problem->answer = $request->input('answer');
             $problem->number = $request->input('number');
             $problem->score = $request->input('score');
@@ -63,7 +94,7 @@ class ProblemController extends Controller
             $problem = Problem::create([
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
-                //'question' => $request->input('question'),
+                'question' => json_encode($question),
                 'answer' => $request->input('answer'),
                 'number' => $request->input('number'),
                 'score' => $request->input('score'),

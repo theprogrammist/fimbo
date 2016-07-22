@@ -86,9 +86,111 @@
     @include('admin.block.plain-text', ['page' => $problem, 'name' =>'score', 'caption' => 'Количество баллов', 'inputText' => 'true'])
 
 
-    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'description', 'caption' => 'Описание', 'width' => 12])
+    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'description', 'caption' => 'Описание и вопрос', 'width' => 12])
 
-    <?php $name = 'question'; $caption = 'Вопрос'; ?>
+    <?php $name = 'question'; $caption = 'Варианты ответа'; ?>
+    <div class="col-sm-9 form-group">
+        <label class="col-sm-3 control-label text-right">
+            {{ $caption  }}
+        </label>
+
+        <div style="clear: both"></div>
+
+        <div class="col-sm-12">
+            <div class="tabbable" id="{{$name}}"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li @if($question->type == 'radio') class="active" @endif><a href="#tab1" data-toggle="tab">Одиночный
+                            выбор</a></li>
+                    <li @if($question->type == 'checkbox') class="active" @endif><a href="#tab2" data-toggle="tab">Множественный
+                            выбор</a></li>
+                    <li @if($question->type == 'single') class="active" @endif><a href="#tab3"
+                                                                                  data-toggle="tab">Число</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane @if($question->type == 'radio') active @endif" id="tab1" data-type="radio">
+                        @foreach($question->radio->texts as $i => $text)
+                            <div class="col-sm-12 form-group" style="padding-top: 15px">
+                                <div class="col-sm-1" style="margin-top: -4px">
+                                    <input type="radio" name="radio_question" class="form-control"
+                                           value="{{ $i }}"
+                                           @if($i == $question->radio->number) checked="checked" @endif>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <input type="text" name="radio_quesiton_text[]" class="form-control"
+                                           value="{{ $text }}">
+                                </div>
+                                <button type="button" class="btn btn-default text-right minus"
+                                        onclick="removeQuestion(this)"
+                                        title="удалить">&ndash;</button>
+                                @if($i == count($question->radio->texts) - 1)
+                                    <button type="button" class="btn btn-default text-right plus"
+                                            onclick="duplicateQuestionBlock(this)"
+                                            title="добавить еще вариант">+
+                                    </button>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="tab-pane @if($question->type == 'checkbox') active @endif" id="tab2"
+                         data-type="checkbox">
+                        @foreach($question->checkbox->texts as $i => $text)
+                            <div class="col-sm-12 form-group" style="padding-top: 15px">
+                                <div class="col-sm-1" style="margin-top: -4px">
+                                    <input type="checkbox" name="checkbox_question[]" class="form-control"
+                                           value="{{ $i }}"
+                                           @if(in_array($i, $question->checkbox->numbers)) checked="checked" @endif>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="checkbox_quesiton_text[]" class="form-control"
+                                           value="{{ $text }}">
+                                </div>
+                                <button type="button" class="btn btn-default text-right minus"
+                                        onclick="removeQuestion(this)"
+                                        title="удалить">&ndash;</button>
+                                @if($i == count($question->checkbox->texts) - 1)
+                                    <button type="button" class="btn btn-default text-right plus"
+                                            onclick="duplicateQuestionBlock(this)"
+                                            title="добавить еще вариант">+
+                                    </button>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="tab-pane @if($question->type == 'single') active @endif" id="tab3" data-type="single">
+                        <div class="col-sm-12 form-group" style="padding-top: 15px">
+                            <div class="col-sm-6 col-sm-offset-1">
+                                <input type="text" name="single_quesiton" class="form-control"
+                                       value="{{ $question->single }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function duplicateQuestionBlock(t) {
+            $obj = $(t).parent();
+            $new = $obj.clone();
+            $n = $new.find('input[type=checkbox], input[type=radio]');
+            $n.removeAttr('checked');
+            $n.val(parseInt($n.val()) + 1);
+            $new.find('input[type=text]').val('');
+            $obj.after($new);
+
+            $(t).remove();
+        }
+        $('#question').parents('form').submit(function (e) {
+            var type = $('#question').find('div.active').attr('data-type');
+            $(e.target).append('<input type="hidden" name="question_type" value="' + type + '">')
+        });
+        function removeQuestion(el) {
+            if ($(el).parents('div.tab-pane').find('button.minus').last()[0] != el) {
+                $(el).parent().remove();
+            }
+        }
+    </script>
 
     @include('admin.block.plain-text', ['page' => $problem, 'name' =>'answer', 'caption' => 'Разъяснение решения', 'width' => 12])
 
@@ -152,7 +254,7 @@
             <select class="form-control" name="{{$name}}" data-name="{{$name}}"></select>
         </div>
         <button type="button" class="btn btn-default text-right" onclick="duplicateAddLectionBlock(this)"
-                title="добавить еще файл">+
+                title="прикрепить еще лекцию">+
         </button>
         @if ($errors->has($name))
             <span class="help-block">
