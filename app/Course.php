@@ -16,7 +16,8 @@ class Course extends Model
         'blue' => 'Голубой',
         'purple' => 'Фиолетовый',
         'orange' => 'Оранжевый',
-        'yellow' => 'Желтый',];
+        'yellow' => 'Желтый',
+        'olive' => 'Оливковый',];
 
     public function lections()
     {

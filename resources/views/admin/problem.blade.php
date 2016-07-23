@@ -139,7 +139,7 @@
                                 <div class="col-sm-1" style="margin-top: -4px">
                                     <input type="checkbox" name="checkbox_question[]" class="form-control"
                                            value="{{ $i }}"
-                                           @if(in_array($i, $question->checkbox->numbers)) checked="checked" @endif>
+                                           @if($question->checkbox->numbers && in_array($i, $question->checkbox->numbers)) checked="checked" @endif>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" name="checkbox_quesiton_text[]" class="form-control"

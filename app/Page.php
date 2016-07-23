@@ -24,6 +24,7 @@ class Page extends Model
     ];
 
     public static $difficultyNames = [1 => 'Просто', 2 =>  'Несложно', 3 => 'Непросто', 4 => 'Сложно'];
+    public static $difficultyColors = [1 => 'green', 2 =>  'blue', 3 => 'orange', 4 => 'red'];
     /**
      * The attributes that are mass assignable.
      *

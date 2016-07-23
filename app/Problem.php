@@ -20,4 +20,9 @@ class Problem extends Model
     {
         return $this->belongsToMany('App\Page', 'problem_lection', 'problem_id', 'lection_id')->withTimestamps();
     }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Course');
+    }
 }
