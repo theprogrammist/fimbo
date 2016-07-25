@@ -12,7 +12,7 @@
                 </div>
             </a>
 
-            <div class="slider__item-level slider__item-level_<?=array('green', 'yellow', 'red')[$i%3]?>">
+            <div class="slider__item-level {{ (empty($lct->difficulty))?App\Page::$difficultyColors[1] : App\Page::$difficultyColors[$lct->difficulty] }}Option">
                 {{ (empty($lct->difficulty))?App\Page::$difficultyNames[1] : App\Page::$difficultyNames[$lct->difficulty] }}</div>
         </div>
         <div class="slider__item-text">

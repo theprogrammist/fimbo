@@ -95,55 +95,7 @@ $(function () {
   });
 
 
-  // slider-five
-  $owlFive = $('.js-slider-five');
-  var owlFive_Settings = {
-    items: 5,
-    nav:true,
-    mouseDrag: false,
-    smartSpeed: 550,
-    center:true,
-    startPosition: 2,
-    //loop:true,
-    //autoplay:true,
-    //autoplayTimeout:5000,
-    autoplayHoverPause: true,
-    responsive:{
-      0:{
-          items:1,
-      },
-      479:{
-          items:3,
-      },
-      768:{
-          items:3,
-      },
-      1000:{
-          items:5,
-      }
-    },
-    onTranslate: fiveSlide,
-  };
-  $owlFive.owlCarousel( owlFive_Settings );
-  function fiveSlide(event){
-    setTimeout(function(){
-    $('.js-slider-five .owl-item').removeClass('one');
-    $('.js-slider-five .owl-item').removeClass('two');
-    $('.js-slider-five .owl-item').removeClass('three');
-    $('.js-slider-five .owl-item').removeClass('four');
-    $('.js-slider-five .owl-item').removeClass('five');
-    $('.js-slider-five').find('.center').prev().prev().addClass('one');
-    $('.js-slider-five').find('.center').prev().addClass('two');
-    $('.js-slider-five').find('.center').addClass('three');
-    $('.js-slider-five').find('.center').next().addClass('four');
-    $('.js-slider-five').find('.center').next().next().addClass('five');
-  },50)
-  }
-  $('.js-slider-five').on('click', '.owl-item', function(event) {
-    var index = $(this).index();
-    $(this).closest('.owl-stage').trigger('to.owl.carousel', [index, 550, true]);
-  });
-  fiveSlide();
+
 
 
   // animated
@@ -214,7 +166,7 @@ $(function () {
 
 
   // select style
-  $('input[type="checkbox"], input[type="radio"], select').styler();
+  $('input[type="checkbox"], select').styler();
 
 
   // validation form

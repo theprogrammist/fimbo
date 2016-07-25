@@ -2967,11 +2967,15 @@ label.error {
     background: #fff;
     border: 2px solid #d2d8da;
     border-radius: 3px;
+    opacity: 1;
+    transition: all 0.42s;
 }
 
 .read-task__answers-label .jq-checkbox.checked {
     background: #3ed686;
     border-color: #3ed686;
+    opacity: 1;
+    transition: all 0.42s;
 }
 
 .read-task__answers-label .jq-checkbox.checked:before {

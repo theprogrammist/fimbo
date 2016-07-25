@@ -141,93 +141,9 @@
             </div><a href="javascript:void(0);" class="btn">Выбрать</a>
         </div>
     </div>
-    <div class="popup popup-wrong js-popup js-popup-wrong">
-        <a href="javascript:void(0);" class="popup__close js-popup-close"></a>
-        <div class="popup__title">К сожалению, неверно</div>
-        <div class="popup__content">
-            <div class="popup-wrong__title">Это может помочь дать правильный ответ</div>
-            <ul class="popup-wrong__links">
-                <li><a href="javascript:void(0);" class="popup-wrong__link">1. Общество</a>
-                </li>
-                <li><a href="javascript:void(0);" class="popup-wrong__link">2. Блага</a>
-                </li>
-                <li><a href="javascript:void(0);" class="popup-wrong__link">3. Ресурсы  </a>
-                </li>
-            </ul><a href="javascript:void(0);" class="popup-wrong__repeat">попробовать еще раз</a>
-        </div>
-    </div>
-    <div class="popup popup-wrong popup-correctly js-popup js-popup-wrong">
-        <a href="javascript:void(0);" class="popup__close js-popup-close"></a>
-        <div class="popup__title">Задача решена!</div>
-        <div class="popup__content">
-            <div class="popup-correctly__money">Твой капитал вырос на <span>ХХ <денег></span>
-            </div>
-            <div class="popup-correctly__point">
-                <div class="popup-correctly__point-active">256 очков</div>
-                <div class="popup-correctly__point-icon"></div>
-            </div>
-        </div>
-    </div>
 </div>
-<div class="read-bg js-read-bg">
-    <div class="container">
-        <div class="read-task js-read-task">
-            <div class="read-task__title">Основы экономики</div>
-            <div class="read-task__dop-title">Задача 1 из 9. Расчет цены выбора</div>
-            <div class="read-task__content">
-                <div class="read-task__left-col">
-                    <div class="read-task__text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-                            ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                            sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                        <img src="<?=asset('img/read-task.jpg')?>" alt="read-task">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    </div>
-                    <div class="read-task__answers">
-                        <div class="read-task__answers-title">Выберите один или несколько вариантов ответов:</div>
-                        <div class="read-task__answers-content">
-                            <form class="read-task__answers-form">
-                                <div class="read-task__answers-labels">
-                                    <label class="read-task__answers-label">
-                                        <input type="checkbox" class="read-task__answers-input"><span class="read-task__answers-label-title">Вариант 1</span><span class="read-task__answers-label-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit ipsum dolor sit </span>
-                                    </label>
-                                    <label class="read-task__answers-label">
-                                        <input type="checkbox" class="read-task__answers-input"><span class="read-task__answers-label-title">Вариант 2</span><span class="read-task__answers-label-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit ipsum dolor sit </span>
-                                    </label>
-                                    <label class="read-task__answers-label">
-                                        <input type="checkbox" class="read-task__answers-input"><span class="read-task__answers-label-title">Вариант 3</span><span class="read-task__answers-label-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit ipsum dolor sit </span>
-                                    </label>
-                                    <label class="read-task__answers-label">
-                                        <input type="checkbox" class="read-task__answers-input"><span class="read-task__answers-label-title">Вариант 4</span><span class="read-task__answers-label-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit ipsum dolor sit </span>
-                                    </label>
-                                </div>
-                                <button class="read-task__answers-button btn js-answer">дать ответ</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="read-task__right-col">
-                    <div class="difficult">
-                        <div class="difficult__title">Если трудно, прочитай</div>
-                        <div class="difficult__content">
-                            <ol class="difficult__ol">
-                                <li class="difficult__li"><a href="javascript:void(0);" class="difficult__link">Общество</a>
-                                </li>
-                                <li class="difficult__li"><a href="javascript:void(0);" class="difficult__link">Блага</a>
-                                </li>
-                                <li class="difficult__li"><a href="javascript:void(0);" class="difficult__link">Ресурсы</a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+@yield('read-task')
+
 </body>
 </html>

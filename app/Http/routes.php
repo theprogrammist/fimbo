@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/problem/{problemId}', ['uses' => 'ProblemController@show'])->middleware('auth');
+Route::post('/problem/{problemId}/solution', ['uses' => 'ProblemController@solution'])->middleware('auth');
+
 Route::get('/cabinet/', function() {
     return view('cabinet');
 });

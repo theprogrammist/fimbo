@@ -1,5 +1,7 @@
+@include('read-task')
 @section('solve')
 
+    @if(Request::segment(1)!=='lection')
     <div class="decided">
         <h2 class="h2 decided__h2">Решай</h2>
         <div class="slider-five">
@@ -16,7 +18,7 @@
                             <div class="{{ $lct->course->color }}Option slider__item-category">{{ $lct->course->title }}</div>
                             <div class="slider__item-progress slider__item-progress_yes"></div>
 
-                            <a href="javascript:void(0);" onclick="rememberVisitedPosition(this,'{{ url('lection/') . '/' . $lct->id . '/'  }}');" class="slider-five_learn_olive">
+                            <a href="{{ url('problem/') . '/' . $lct->id . '/'  }}" class="slider-five_learn_olive">
 
                                 <div class="slider__item-title slider__item-title_{{ $lct->course->color }}">
                                     <div class="slider__item-span">{{ $lct->title }}</div>
@@ -25,7 +27,7 @@
 
                             <div class="slider__item-point"><span class="slider__item-point-span">{{ $lct->score }} </span>очков</div>
 
-                            <div class="slider__item-level slider__item-level_{{ (empty($lct->difficulty))?App\Page::$difficultyColors[1] : App\Page::$difficultyColors[$lct->difficulty] }}">
+                            <div class="slider__item-level {{ (empty($lct->difficulty))?App\Page::$difficultyColors[1] : App\Page::$difficultyColors[$lct->difficulty] }}Option">
                                 {{ (empty($lct->difficulty))?App\Page::$difficultyNames[1] : App\Page::$difficultyNames[$lct->difficulty] }}</div>
                         </div>
                         <div class="slider__item-text">
@@ -40,5 +42,6 @@
             </div>
         </div>
     </div>
+    @endif
 
 @endsection

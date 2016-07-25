@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('solve')
+
 @section('html-page-title')
     FIMBO.RU - УЧИСЬ
 @overwrite
