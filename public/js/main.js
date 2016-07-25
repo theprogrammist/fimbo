@@ -199,8 +199,8 @@ $(function () {
   $('.js-read-bg').click( function(event){
     if( $(event.target).closest(".read-task__left-col").length || $(event.target).closest(".read-task__right-col").length )
       return;
-    $(".js-read-task.open, .js-read-bg").fadeOut();
-    $('body').css({'overflow':'auto'});
+    //$(".js-read-task.open, .js-read-bg").fadeOut();
+    //$('body').css({'overflow':'auto'});
     event.stopPropagation();
   });
 

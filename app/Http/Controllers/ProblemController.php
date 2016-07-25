@@ -47,27 +47,31 @@ class ProblemController extends Controller
         $question = json_decode($problem->question);
 
         $success = false;
-        if ($question->type == 'single') {
+        if( !($request->has('skip_question') && $request->input('skip_question') == 'skip')) {
 
-            if ($request->has('single')) {
-                $success = ($request->input('single') == $question->single);
+            if ($question->type == 'single') {
+
+                if ($request->has('single')) {
+                    $success = ($request->input('single') == $question->single);
+                }
+
+            } elseif ($question->type == 'radio') {
+
+                if ($request->has('radio')) {
+                    $success = (intval($request->input('radio')) == intval($question->radio->number));
+                }
+
+            } elseif ($question->type == 'checkbox') {
+
+                if ($request->has('checkbox')) {
+                    $b = (array)$question->checkbox->numbers;
+                    $a = $request->input('checkbox');
+                    sort($a);
+                    sort($b);
+                    $success = ($a == $b);
+                }
             }
 
-        } elseif ($question->type == 'radio') {
-
-            if ($request->has('radio')) {
-                $success = (intval($request->input('radio')) == intval($question->radio->number));
-            }
-
-        } elseif ($question->type == 'checkbox') {
-
-            if ($request->has('checkbox')) {
-                $b = (array)$question->checkbox->numbers;
-                $a = $request->input('checkbox');
-                sort($a);
-                sort($b);
-                $success = ($a == $b);
-            }
         }
 
         $attempt = 1;

@@ -104,7 +104,7 @@
                                 <div class="difficult__content">
                                     <ol class="difficult__ol">
                                         @foreach($problem->lections as $lct)
-                                        <li class="difficult__li"><a href="{{ url('lection/'.$lct->id) }}" class="difficult__link">{{ $lct->title }}</a> </li>
+                                        <li class="difficult__li"><a href="{{ url('lection/'.$lct->id) }}" target="_blank" class="difficult__link">{{ $lct->title }}</a> </li>
                                         @endforeach
                                     </ol>
                                 </div>
@@ -223,6 +223,27 @@
                 $('.js-popup-wrap, .js-popup-register').fadeIn();
                 $('.js-popup-enter').addClass('open');
             @else
+
+                window.addEventListener("beforeunload", function (e) {
+
+
+                            $.ajax({
+                                type: "POST",
+                                url: '{{ action('ProblemController@solution', $problem->id) }}',
+                                data: {'skip_question' : 'skip', '_token' : '{{ csrf_token() }}'},
+                                success: function(resp) {},
+                                error: function($resp) {}
+                            });
+
+
+
+
+                    var dialogText = 'Закрытие окна с задачей будет засчитано как неправильный ответ. Вы уверены?';
+                    (e || window.event).returnValue = dialogText;
+                    return dialogText;
+                });
+
+
                 $('body').css({'overflow': 'hidden'});
                 $('.js-read-bg, .js-read-task').fadeIn();
                 $('.js-popup-enter').addClass('open');
