@@ -82,7 +82,7 @@
                 'default' => App\Problem::max('number')+1])
 
     @include('admin.block.plain-text', ['page' => $problem, 'name' =>'title', 'caption' => 'Название', 'inputText' => 'true'])
-    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'annotation', 'caption' => 'Описание и вопрос'])
+    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'annotation', 'caption' => 'Краткое описание'])
     @include('admin.block.difficulty-form-el',['page' => $problem])
     @include('admin.block.plain-text', ['page' => $problem, 'name' =>'score', 'caption' => 'Количество баллов', 'inputText' => 'true'])
 
