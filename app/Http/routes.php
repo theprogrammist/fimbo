@@ -27,6 +27,8 @@ Route::get('/cabinet/', function() {
     return view('cabinet');
 });
 
+Route::get('/clear-all-attempts/', function() { if (!Auth::guest()) { Auth::user()->problems()->detach(); echo 'For user "' . Auth::user()->name . '" cleared all problem solution attempts.';} });
+
 Route::get('/about_us', function () {
     return view('static-content', ['page' => empty($page = App\Page::whereName('about_us')->first()) ? new App\Page : $page]);
 });

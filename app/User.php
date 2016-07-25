@@ -26,6 +26,6 @@ class User extends Authenticatable
 
     public function problems()
     {
-        return $this->belongsToMany('App\Problem', 'user_problem');
+        return $this->belongsToMany('App\Problem', 'user_problem')->withTimestamps()->withPivot('attempt', 'success');
     }
 }

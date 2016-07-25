@@ -125,22 +125,35 @@
                 url: '{{ action('ProblemController@solution', $problem->id) }}',
                 data: $('#questionForm').serialize(),
                 success: function(resp) {
-                    console.log(resp);
+                    console.log(resp = JSON.parse(resp));
 
-                    if(resp == 'success') {
+                    if(resp.message == 'success') {
                         $('body').css({'overflow': 'hidden'});
                         $('.js-popup-target:has(.js-popup-success), .js-popup-success').fadeIn();
+                        $('.js-popup-enter').addClass('open');
+                    } else if(resp.message == 'only_one_attempt') {
+                        $('body').css({'overflow':'hidden'});
+                        $('.js-popup-register').find('.popup__title').text('Вы уже решали эту задачу, для нее предусмотрена только одна попытка.');
+                        $('.js-popup-wrap, .js-popup-register').fadeIn();
+                        $('.js-popup-enter').addClass('open');
+                    } else if(resp.message == 'attempt_exhausted') {
+                        $('body').css({'overflow':'hidden'});
+                        $('.js-popup-register').find('.popup__title').text('Вы уже исчерпали попытки решения этой задачи.');
+                        $('.js-popup-wrap, .js-popup-register').fadeIn();
                         $('.js-popup-enter').addClass('open');
                     } else {
                         $('body').css({'overflow': 'hidden'});
                         $('.js-popup-target:has(.js-popup-wrong), .js-popup-wrong').fadeIn();
                         $('.js-popup-enter').addClass('open');
+                        if(resp.retry == 'no') {
+                            $('#tryAgain').remove();
+                        }
                     }
-
+                    window.scrollTo(undefined,undefined);
                 },
                 error: function($resp) {
                     $('body').css({'overflow':'hidden'});
-                    $('.js-popup-register').find('.popup__title').text('Что-то пошло не так, попробуйте повтороить попытку через несколько минут');
+                    $('.js-popup-register').find('.popup__title').text('Что-то пошло не так, попробуйте повтороить попытку через несколько минут/'.$resp);
                     $('.js-popup-wrap, .js-popup-register').fadeIn();
                     $('.js-popup-enter').addClass('open');
                 }
@@ -153,17 +166,23 @@
 
                 <div class="popup__title">К сожалению, неверно</div>
                 <div class="popup__content">
-                    <div class="popup-wrong__title">Это может помочь дать правильный ответ</div>
-                    <ul class="popup-wrong__links">
-                        <li><a href="javascript:void(0);" class="popup-wrong__link">1. Общество</a>
-                        </li>
-                        <li><a href="javascript:void(0);" class="popup-wrong__link">2. Блага</a>
-                        </li>
-                        <li><a href="javascript:void(0);" class="popup-wrong__link">3. Ресурсы </a>
-                        </li>
-                    </ul>
-                    <a href="javascript:void(0);" class="popup-wrong__repeat">попробовать еще раз</a>
+                    @if($problem->lections->count() != 0)
+                        <div class="popup-wrong__title">Это может помочь дать правильный ответ</div>
+                        <ul class="popup-wrong__links">
+                            @foreach($problem->lections as $i =>$lct)
+                                <li><a href="{{ url('lection/'.$lct->id) }}" class="popup-wrong__link">{{$i+1}}
+                                        . {{ $lct->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
+                    <a href="javascript:void(0);" id="tryAgain" onclick="tryAgain()" class="popup-wrong__repeat">попробовать еще раз</a>
                 </div>
+                <script>
+                    function tryAgain() {
+                        $(".js-popup.open .js-popup-close").trigger('click');
+                        window.location.href = "{{ action('ProblemController@show', $problem->id) }}";
+                    }
+                </script>
             </div>
             <div class="popup popup-wrong popup-correctly js-popup js-popup-success">
                 <a href="javascript:void(0);" class="popup__close js-popup-close"></a>
@@ -182,9 +201,21 @@
 
 
         <script>
-            $('body').css({'overflow': 'hidden'});
-            $('.js-read-bg, .js-read-task').fadeIn();
-            $('.js-popup-enter').addClass('open');
+            @if($success)
+                $('body').css({'overflow':'hidden'});
+                $('.js-popup-register').find('.popup__title').text('Задача уже была вами успешно решена.');
+                $('.js-popup-wrap, .js-popup-register').fadeIn();
+                $('.js-popup-enter').addClass('open');
+            @elseif($retry === false && $success === false)
+                $('body').css({'overflow':'hidden'});
+                $('.js-popup-register').find('.popup__title').text('Количество попыток решения исчерпано.');
+                $('.js-popup-wrap, .js-popup-register').fadeIn();
+                $('.js-popup-enter').addClass('open');
+            @else
+                $('body').css({'overflow': 'hidden'});
+                $('.js-read-bg, .js-read-task').fadeIn();
+                $('.js-popup-enter').addClass('open');
+            @endif;
         </script>
     @endif
 @endsection
