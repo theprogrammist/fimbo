@@ -23,7 +23,7 @@ class ProblemController extends Controller
     {
         $problem = Problem::find($problemId);
 
-        session(['problemSliderStart' => $problemId]);
+        session(['lastOpenedProblemId' => $problemId]);
 
         if(Auth::user()->problems->find($problemId)) {
             $retry = (Auth::user()->problems->find($problemId)->pivot->attempt < 2) && ($problem->attempts > 1);

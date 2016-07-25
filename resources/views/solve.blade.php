@@ -44,7 +44,7 @@
                                 && !(Auth::user()->problems->find($prblm->id)->pivot->success)
                                 && ( Auth::user()->problems->find($prblm->id)->pivot->attempt >= $prblm->attempts )
                                )
-                                <?php var_dump(Auth::user()->problems->find($prblm->id)->pivot->attempt , $prblm->attempts)?>
+
                                 <div class="slider__item-blocked">
                                     <div class="slider__item-blocked-text">Эта задача была {{
 

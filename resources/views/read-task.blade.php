@@ -1,4 +1,12 @@
 @section('read-task')
+    <?php
+        if($lastOpenedProblemId = Session::get('lastOpenedProblemId')) {
+            $ids = App\Problem::all()->pluck('id')->toArray();
+            if(null === ($start = array_search($lastOpenedProblemId, $ids))) {
+                unset($start);
+            }
+        }
+    ?>
     <script>
         // slider-five
         $owlFive = $('.js-slider-five');
@@ -8,7 +16,7 @@
             mouseDrag: false,
             smartSpeed: 550,
             center: true,
-            startPosition: {{ Session::get('problemSliderStart',2) }},
+            startPosition: {{ $start or 2 }},
             //loop:true,
             //autoplay:true,
             //autoplayTimeout:5000,
