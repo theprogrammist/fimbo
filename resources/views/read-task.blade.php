@@ -76,8 +76,7 @@
                                                 @foreach($question->radio->texts as $i => $txt)
                                                 <label class="read-task__answers-label">
                                                     <input type="radio" name="radio" class="radio read-task__answers-input" id="radio-{{$i}}" value="{{ $i }}">
-                                                    <label for="radio-{{$i}}" class="read-task__answers-label-title">Вариант {{ $i+1 }}</label>
-                                                    <span class="read-task__answers-label-text">{{ $txt }} </span>
+                                                    <label for="radio-{{$i}}" class="read-task__answers-label-title">{{ $txt }}</label>
                                                 </label>
                                                     @endforeach
                                             </div>
@@ -88,8 +87,8 @@
                                             @foreach($question->checkbox->texts as $i => $txt)
                                                 <label class="read-task__answers-label">
                                                     <input type="checkbox" class="read-task__answers-input" name="checkbox[]" value="{{ $i }}">
-                                                    <span class="read-task__answers-label-title">Вариант {{ $i+1 }}</span>
-                                                    <span class="read-task__answers-label-text">{{ $txt }} </span>
+                                                    <span class="read-task__answers-label-title">{{ $txt }}</span>
+
                                                 </label>
                                             @endforeach
                                         </div>

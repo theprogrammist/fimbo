@@ -22,6 +22,8 @@
                                     (Auth::user()->problems->find($prblm->id))
                                     &&
                                     !(Auth::user()->problems->find($prblm->id)->pivot->success)
+                                    &&
+                                    ( Auth::user()->problems->find($prblm->id)->pivot->attempt >= $prblm->attempts )
                                 ) ? 'no' : 'yes'
 
                             }}"></div>
@@ -38,7 +40,11 @@
                             <div class="slider__item-level {{ (empty($prblm->difficulty))?App\Page::$difficultyColors[1] : App\Page::$difficultyColors[$prblm->difficulty] }}Option">
                                 {{ (empty($prblm->difficulty))?App\Page::$difficultyNames[1] : App\Page::$difficultyNames[$prblm->difficulty] }}</div>
 
-                            @if(Auth::user()->problems->find($prblm->id) && !(Auth::user()->problems->find($prblm->id)->pivot->success))
+                            @if(Auth::user()->problems->find($prblm->id)
+                                && !(Auth::user()->problems->find($prblm->id)->pivot->success)
+                                && ( Auth::user()->problems->find($prblm->id)->pivot->attempt >= $prblm->attempts )
+                               )
+                                <?php var_dump(Auth::user()->problems->find($prblm->id)->pivot->attempt , $prblm->attempts)?>
                                 <div class="slider__item-blocked">
                                     <div class="slider__item-blocked-text">Эта задача была {{
 
@@ -48,7 +54,7 @@
                                         <br>Решать её ещё раз нельзя.
                                         <br>Переходи к следующей.</div>
                                 </div>
-                            @elseif(Auth::user()->problems->find($prblm->id)) && (Auth::user()->problems->find($prblm->id)->pivot->success))
+                            @elseif(Auth::user()->problems->find($prblm->id) && (Auth::user()->problems->find($prblm->id)->pivot->success))
                             <div class="slider__item-blocked">
                                 <div class="slider__item-blocked-text">Эта задача успешно решена.</div>
                             </div>
