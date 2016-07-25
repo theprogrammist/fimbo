@@ -58,7 +58,7 @@
                         </div>
                         <div class="slider__item-text">
                             <div class="slider__item-text-hidden">
-                                {!! implode(' ', array_slice(explode(' ', strip_tags($prblm->description)), 0, 16)) !!} ...
+                                {{ $prblm->annotation }}
                             </div>
                         </div>
                     </div>

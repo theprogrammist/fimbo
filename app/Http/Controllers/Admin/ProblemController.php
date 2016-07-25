@@ -50,7 +50,7 @@ class ProblemController extends Controller
                 'attempts' => 'required|Numeric',
                 'difficulty' => 'required|Numeric',
                 'course_id' => 'exists:courses,id',
-                //'question' => 'required|max:15000',
+                'annotation' => 'max:1024',
             ]
         );
 
@@ -80,6 +80,7 @@ class ProblemController extends Controller
             $problem = Problem::find($request->input('problem_id'));
 
             $problem->title = $request->input('title');
+            $problem->annotation = $request->input('annotation');
             $problem->description = $request->input('description');
             $problem->question = json_encode($question);
             $problem->answer = $request->input('answer');
@@ -93,6 +94,7 @@ class ProblemController extends Controller
         } else {
             $problem = Problem::create([
                 'title' => $request->input('title'),
+                'annotation' => $request->input('annotation'),
                 'description' => $request->input('description'),
                 'question' => json_encode($question),
                 'answer' => $request->input('answer'),

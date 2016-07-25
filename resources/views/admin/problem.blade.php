@@ -41,7 +41,7 @@
     <script type="text/javascript" src="{{ asset('/js/libs/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript">
         tinymce.init({
-            selector: "textarea",
+            selector: "textarea[name=description], textarea[name=answer]",
             plugins: ["advlist autolink lists link image charmap print preview anchor", "searchreplace visualblocks code fullscreen", "insertdatetime media table contextmenu paste"],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
             extended_valid_elements: "iframe[src|frameborder|style|scrolling|class|width|height|name|align]",
@@ -82,11 +82,12 @@
                 'default' => App\Problem::max('number')+1])
 
     @include('admin.block.plain-text', ['page' => $problem, 'name' =>'title', 'caption' => 'Название', 'inputText' => 'true'])
+    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'annotation', 'caption' => 'Описание и вопрос'])
     @include('admin.block.difficulty-form-el',['page' => $problem])
     @include('admin.block.plain-text', ['page' => $problem, 'name' =>'score', 'caption' => 'Количество баллов', 'inputText' => 'true'])
 
 
-    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'description', 'caption' => 'Описание и вопрос', 'width' => 12])
+    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'description', 'caption' => 'Описание и вопрос'])
 
     <?php $name = 'question'; $caption = 'Варианты ответа'; ?>
     <div class="col-sm-9 form-group">
@@ -94,9 +95,8 @@
             {{ $caption  }}
         </label>
 
-        <div style="clear: both"></div>
 
-        <div class="col-sm-12">
+        <div class="col-sm-9">
             <div class="tabbable" id="{{$name}}"> <!-- Only required for left/right tabs -->
                 <ul class="nav nav-tabs">
                     <li @if($question->type == 'radio') class="active" @endif><a href="#tab1" data-toggle="tab">Одиночный
@@ -192,7 +192,7 @@
         }
     </script>
 
-    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'answer', 'caption' => 'Разъяснение решения', 'width' => 12])
+    @include('admin.block.plain-text', ['page' => $problem, 'name' =>'answer', 'caption' => 'Разъяснение решения'])
 
     <?php $name = 'attempts'; $caption = 'Количество попыток'; ?>
     <div class="col-sm-9 form-group">
@@ -200,7 +200,7 @@
             {{ $caption  }}
         </label>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="padding-right: 69px;">
             <select class="form-control" name="{{$name}}">
                 <option value="1"
                 <?= (empty(old($name)) ? $problem->$name : old($name)) == 1 ? 'selected' : '' ?>>
@@ -250,10 +250,10 @@
             {{ $caption  }}
         </label>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="padding-right: 74px;margin-right: -49px;">
             <select class="form-control" name="{{$name}}" data-name="{{$name}}"></select>
         </div>
-        <button type="button" class="btn btn-default text-right" onclick="duplicateAddLectionBlock(this)"
+        <button type="button" class="btn btn-default text-right" onclick="duplicateAddLectionBlock(this)" style="display: inline-block; float:left"
                 title="прикрепить еще лекцию">+
         </button>
         @if ($errors->has($name))
