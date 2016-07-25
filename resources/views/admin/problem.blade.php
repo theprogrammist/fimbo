@@ -253,7 +253,7 @@
         <div class="col-sm-6" style="padding-right: 74px;margin-right: -49px;">
             <select class="form-control" name="{{$name}}" data-name="{{$name}}"></select>
         </div>
-        <button type="button" class="btn btn-default text-right" onclick="duplicateAddLectionBlock(this)" style="display: inline-block; float:left"
+        <button type="button" class="btn btn-default text-right" onclick="duplicateAddLectionBlock(this)" style="display: inline-block; float:left;position: relative;z-index: 1000;"
                 title="прикрепить еще лекцию">+
         </button>
         @if ($errors->has($name))
