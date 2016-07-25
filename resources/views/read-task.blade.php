@@ -76,7 +76,7 @@
                                                 @foreach($question->radio->texts as $i => $txt)
                                                 <label class="read-task__answers-label">
                                                     <input type="radio" name="radio" class="radio read-task__answers-input" id="radio-{{$i}}" value="{{ $i }}">
-                                                    <label for="radio-{{$i}}" class="read-task__answers-label-title">Вариант {{ $i }}</label>
+                                                    <label for="radio-{{$i}}" class="read-task__answers-label-title">Вариант {{ $i+1 }}</label>
                                                     <span class="read-task__answers-label-text">{{ $txt }} </span>
                                                 </label>
                                                     @endforeach
@@ -88,7 +88,7 @@
                                             @foreach($question->checkbox->texts as $i => $txt)
                                                 <label class="read-task__answers-label">
                                                     <input type="checkbox" class="read-task__answers-input" name="checkbox[]" value="{{ $i }}">
-                                                    <span class="read-task__answers-label-title">Вариант {{ $i }}</span>
+                                                    <span class="read-task__answers-label-title">Вариант {{ $i+1 }}</span>
                                                     <span class="read-task__answers-label-text">{{ $txt }} </span>
                                                 </label>
                                             @endforeach
@@ -148,6 +148,11 @@
                         if(resp.retry == 'no') {
                             $('#tryAgain').remove();
                         }
+                        if(resp.answer) {
+                            $('#answer_block').show();
+                            $('#answer').html(resp.answer);
+                            $('#related_lections').remove();
+                        }
                     }
                     window.scrollTo(undefined,undefined);
                 },
@@ -166,7 +171,13 @@
 
                 <div class="popup__title">К сожалению, неверно</div>
                 <div class="popup__content">
+                    <div id="answer_block" style="display: none">
+                        <a href="javascript:void(0);" onclick="$('#answer').toggle();">Посмотреть разъяснение решения</a>
+
+                        <div id="answer" style="padding-top: 15px;display: none;"></div>
+                    </div>
                     @if($problem->lections->count() != 0)
+                        <div id="related_lections">
                         <div class="popup-wrong__title">Это может помочь дать правильный ответ</div>
                         <ul class="popup-wrong__links">
                             @foreach($problem->lections as $i =>$lct)
@@ -174,6 +185,7 @@
                                         . {{ $lct->title }}</a></li>
                             @endforeach
                         </ul>
+                        </div>
                     @endif
                     <a href="javascript:void(0);" id="tryAgain" onclick="tryAgain()" class="popup-wrong__repeat">попробовать еще раз</a>
                 </div>

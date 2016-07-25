@@ -54,7 +54,6 @@ class ProblemController extends Controller
             }
 
         } elseif ($question->type == 'radio') {
-            die('test');
 
             if ($request->has('radio')) {
                 $success = (intval($request->input('radio')) == intval($question->radio->number));
@@ -99,6 +98,8 @@ class ProblemController extends Controller
         //var_dump(Auth::user()->problems->find($problemId)->pivot->attempt);
         $retry = ($attempt < 2) && ($problem->attempts > 1);
 
-        return json_encode(["message" => $success ? 'success' : 'fail', "retry" => $retry ? 'yes' : 'no']);
+        $answer = (!$success && !$retry) ? $problem->answer : '';
+
+        return json_encode(["message" => $success ? 'success' : 'fail', "retry" => $retry ? 'yes' : 'no', 'answer' => $answer]);
     }
 }
