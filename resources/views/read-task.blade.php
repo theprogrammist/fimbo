@@ -223,8 +223,13 @@
                 $('.js-popup-wrap, .js-popup-register').fadeIn();
                 $('.js-popup-enter').addClass('open');
             @else
+                $(".js-popup-close").click(function(){
+                        window.noSkip = true;
+                        window.location.href = '{{ url('/') }}';
+                });
 
                 window.addEventListener("beforeunload", function (e) {
+                    if(window.noSkip) return null;
 
 
                             $.ajax({
