@@ -31,7 +31,9 @@
     </div>
 
     <div class="profile-bar">
-        <div class="profile-bar__active">350 очков до цели</div>
+            <div class="profile-bar__active" style="    text-transform: initial;
+    font-size: 16px;
+    letter-spacing: 3px;">{{  Auth::user()->account->balance }} &nbsp; Monetto</div>
     </div>
 
 @endif
