@@ -58,6 +58,10 @@ class RegistrationController extends Controller
 
         Auth::guard($this->getGuard())->login($user);
 
+        if(Auth::user()->account()->count() == 0 || Auth::user()->account->actions()->wherePricetypeId(\App\Pricetype::whereCode('registration')->first()->id)->count() == 0) {
+            \App\Action::addAction('registration');
+        }
+
         return view('auth.register-success-confirmation')
             ->with('resultClass', 'active-done')
             ->with('resultRedirect', '/')

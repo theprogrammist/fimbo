@@ -25,4 +25,9 @@ class Problem extends Model
     {
         return $this->belongsTo('App\Course');
     }
+
+    public function actions()
+    {
+        return $this->hasMany('App\Action');
+    }
 }

@@ -25,7 +25,7 @@
         </a>
         <div class="profile__hidden js-profile-hidden">
             <a href="{{ url('/cabinet') }}" class="profile__hidden-link profile__hidden-link_profile">Профиль</a>
-            <a href="javascript:void(0);" class="profile__hidden-link profile__hidden-link_setting">Настройки</a>
+            <a href="{{ url('settings') }}" class="profile__hidden-link profile__hidden-link_setting">Настройки</a>
             <a href="{{ url('/logout') }}" class="profile__hidden-link profile__hidden-link_exit">Выйти</a>
         </div>
     </div>

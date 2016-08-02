@@ -138,6 +138,9 @@
                         $('body').css({'overflow': 'hidden'});
                         $('.js-popup-target:has(.js-popup-success), .js-popup-success').fadeIn();
                         $('.js-popup-enter').addClass('open');
+
+                        $('.popup-correctly__money span').text(resp.score +' Monetto');
+                        $('.popup-correctly__point-active').text(resp.balance +' Monetto');
                     } else if(resp.message == 'only_one_attempt') {
                         $('body').css({'overflow':'hidden'});
                         $('.js-popup-register').find('.popup__title').text('Вы уже решали эту задачу, для нее предусмотрена только одна попытка.');

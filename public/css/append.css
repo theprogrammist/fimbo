@@ -354,3 +354,18 @@ div.has-error {
 .radio:focus + label:before {
     box-shadow: 0 0 0 1px rgba(62,214,134,.5);
 }
+
+.help-block strong{
+    height: 16px;
+    width: 100%;
+    background-color: rgba(255,145,119,0.15);
+    font-size: 16px;
+    font-weight: bold;
+}
+.help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #737373;
+    height: 16px;
+}

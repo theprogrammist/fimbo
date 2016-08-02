@@ -78,6 +78,7 @@ class ProblemController extends Controller
         if( Auth::user()->problems()->whereProblemId($problemId)->count() == 0) {
 
             Auth::user()->problems()->attach($problemId,['attempt' => 1, 'success' => $success]);
+            if($success) $this->addAction($problemId);
 
         } elseif( Auth::user()->problems()->whereProblemId($problemId)->count() == 1) {
             //var_dump(Auth::user()->problems()->whereProblemId($problemId)->get()->pivot->attempt); fails -- WTF???
@@ -88,6 +89,7 @@ class ProblemController extends Controller
                 } else {
                     $attempt = 2;
                     Auth::user()->problems()->updateExistingPivot($problemId, ['attempt' => 2, 'success' => $success]);
+                    if($success) $this->addAction($problemId);
                 }
             } else {
                 return json_encode(["message" => 'attempt_exhausted']);
@@ -104,6 +106,18 @@ class ProblemController extends Controller
 
         $answer = (!$success && !$retry) ? $problem->answer : '';
 
-        return json_encode(["message" => $success ? 'success' : 'fail', "retry" => $retry ? 'yes' : 'no', 'answer' => $answer]);
+        return json_encode(["message" => $success ? 'success' : 'fail', "retry" => $retry ? 'yes' : 'no'
+            , 'answer' => $answer
+            , 'score' => $problem->score
+            , 'balance' => Auth::user()->account->balance]);
+    }
+
+    private function addAction($problemId) {
+        $problem = Problem::find($problemId);
+
+        if(Auth::user()->account()->count() == 0 ||
+            Auth::user()->account->actions()->whereProblemId($problemId)->count() == 0) {
+            \App\Action::addAction('problem',null,'Успешно решена задача «'.$problem->title.'»',$problem->score,$problemId);
+        }
     }
 }

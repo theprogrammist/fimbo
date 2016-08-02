@@ -27,6 +27,9 @@ Route::get('/cabinet/', function() {
     return view('cabinet');
 });
 
+Route::get('/settings/',['uses' => 'UserController@show']);
+Route::post('/settings/',['uses' => 'UserController@save']);
+
 Route::get('/clear-all-attempts/', function() { if (!Auth::guest()) { Auth::user()->problems()->detach(); echo 'For user "' . Auth::user()->name . '" cleared all problem solution attempts.';} });
 
 Route::get('/about_us', function () {

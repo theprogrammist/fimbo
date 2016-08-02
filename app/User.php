@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'confirmation_code', 'lastname', 'birthdate'
+        'name', 'email', 'password', 'confirmation_code', 'lastname', 'birthdate', 'url', 'soctype', 'avatar', 'newsletters'
     ];
 
     /**
@@ -27,5 +27,10 @@ class User extends Authenticatable
     public function problems()
     {
         return $this->belongsToMany('App\Problem', 'user_problem')->withTimestamps()->withPivot('attempt', 'success');
+    }
+
+    public function account()
+    {
+        return $this->hasOne('App\Account');
     }
 }

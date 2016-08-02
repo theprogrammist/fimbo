@@ -49,6 +49,7 @@
         </div>
     </div>
 </footer>
+@section('login-popup')
 <div class="popup-wrap js-popup-wrap">
     <div class="popup popup-enter js-popup js-popup-enter">
         @if ($message = Session::get('error'))
@@ -80,11 +81,7 @@
         <form class="popup-enter__form" role="form" method="POST" action="{{ url('/login') }}">
                 {{ csrf_field() }}
             <input type="email" placeholder="Email" class="popup-enter__input {{ $errors->has('email') ? ' has-error' : '' }}" name="email" value="{{ old('email') }}">
-            @if ($errors->has('email'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-            @endif
+            @if ($errors->has('email')) <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span> @endif
             <input type="password" name="password" placeholder="Пароль" class="popup-enter__input {{ $errors->has('password') ? ' has-error' : '' }}">
             @if ($errors->has('password'))
                 <span class="help-block">
@@ -142,6 +139,8 @@
         </div>
     </div>
 </div>
+@endsection
+@yield('login-popup')
 
 @yield('read-task')
 
