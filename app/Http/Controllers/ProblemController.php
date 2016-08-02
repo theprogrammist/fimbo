@@ -109,7 +109,7 @@ class ProblemController extends Controller
         return json_encode(["message" => $success ? 'success' : 'fail', "retry" => $retry ? 'yes' : 'no'
             , 'answer' => $answer
             , 'score' => $problem->score
-            , 'balance' => Auth::user()->account->balance]);
+            , 'balance' => Auth::user()->account->balance + $problem->score]);
     }
 
     private function addAction($problemId) {

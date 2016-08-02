@@ -30,7 +30,18 @@ Route::get('/cabinet/', function() {
 Route::get('/settings/',['uses' => 'UserController@show']);
 Route::post('/settings/',['uses' => 'UserController@save']);
 
-Route::get('/clear-all-attempts/', function() { if (!Auth::guest()) { Auth::user()->problems()->detach(); echo 'For user "' . Auth::user()->name . '" cleared all problem solution attempts.';} });
+Route::get('/clear-all-attempts/', function() { if (!Auth::guest()) {
+    Auth::user()->problems()->detach();
+    Auth::user()->account->actions()->wherePricetypeId(App\Pricetype::whereCode('problem')->first()->id)->delete();
+    //refresh balance
+    $balance = 0;
+    foreach(Auth::user()->account->actions()->get() as $action) {
+        $balance += $action->cost;
+    }
+    Auth::user()->account->balance = $balance;
+    Auth::user()->account->save();
+    echo 'For user "' . Auth::user()->name . '" cleared all problem solution attempts.';
+} });
 
 Route::get('/about_us', function () {
     return view('static-content', ['page' => empty($page = App\Page::whereName('about_us')->first()) ? new App\Page : $page]);
