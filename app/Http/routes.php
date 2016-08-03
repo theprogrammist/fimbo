@@ -25,7 +25,7 @@ Route::post('/problem/{problemId}/solution', ['uses' => 'ProblemController@solut
 
 Route::get('/cabinet/', function() {
     return view('cabinet');
-});
+})->middleware('auth');
 
 Route::get('/settings/',['uses' => 'UserController@show']);
 Route::post('/settings/',['uses' => 'UserController@save']);
